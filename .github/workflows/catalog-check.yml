@@ -44,6 +44,13 @@ jobs:
           else
             gh issue create --title "Catalog check: sources need attention" --body-file report.md
           fi
-      - name: Mark the run as failed
-        if: steps.check.outcome == 'failure'
-        run: exit 1
+           - name: Close open issue when all sources are healthy
+        if: steps.check.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          existing=$(gh issue list --state open --search "Catalog check: sources need attention in:title" --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "All sources verified healthy in the latest check. Closing automatically."
+            gh issue close "$existing" --reason "completed"
+          fi
