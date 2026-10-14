@@ -44,7 +44,7 @@ jobs:
           else
             gh issue create --title "Catalog check: sources need attention" --body-file report.md
           fi
-          - name: Close open issue when all sources are healthy
+      - name: Close open issue when all sources are healthy
         if: steps.check.outcome == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
