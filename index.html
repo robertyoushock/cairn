@@ -61,7 +61,7 @@
           <h3 id="detail-title"></h3>
           <p id="detail-source" class="lead"></p>
           <p id="detail-meta" class="lead"></p>
-          <p id="detail-warn" class="warn" hidden></p>
+          <p id="detail-warn" class="warn" role="alert" hidden></p>
           <button type="button" id="detail-reload" class="quiet" hidden>Preview this area</button>
           <label id="detail-label-wrap">Name each shape by
             <select id="detail-label"></select>
@@ -195,8 +195,8 @@
           </fieldset>
           <details id="look" class="tucked">
             <summary>Labels, fill strength and file size</summary>
-            <label>Fill strength
-              <input type="range" id="k-opacity" min="0" max="100" value="30">
+            <label for="k-opacity">Fill strength
+              <input type="range" id="k-opacity" min="0" max="100" value="30" aria-label="Fill strength percentage">
             </label>
             <label class="check"><input type="checkbox" id="k-labels"> Show each name on the map in Google Earth</label>
             <label class="check"><input type="checkbox" id="k-attrs" checked> Include each item&rsquo;s details (attributes)</label>
@@ -207,7 +207,7 @@
             <small>Colors and outline width (set under Check your list) and labels are saved in Google Earth files (KML and KMZ).</small>
           </details>
           <p id="size-note" class="lead"></p>
-          <p id="size-warn" class="warn" hidden></p>
+          <p id="size-warn" class="warn" role="alert" hidden></p>
           <label>File name
             <input id="x-name" type="text" value="cairn-export" spellcheck="false">
           </label>
