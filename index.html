@@ -72,9 +72,6 @@
           </div>
           <details id="detail-limit">
             <summary>Filter or limit what gets added</summary>
-            <label>Filter (SQL, optional)
-              <input id="l-where" type="text" value="1=1" spellcheck="false">
-            </label>
             <label class="check"><input type="checkbox" id="l-view"> Only what is on the screen right now</label>
             <label class="inline">Most to add
               <select id="l-limit">
@@ -83,6 +80,13 @@
                 <option value="50000">50,000</option>
               </select>
             </label>
+            <details id="detail-sql-details" class="advanced-sql">
+              <summary>Advanced (SQL Filter)</summary>
+              <label>Custom SQL query
+                <input id="l-where" type="text" value="1=1" spellcheck="false" placeholder="e.g. POPULATION > 50000">
+                <small class="hint">Defaults to <code>1=1</code> to include all records.</small>
+              </label>
+            </details>
           </details>
           <a id="detail-report" class="linkish" target="_blank" rel="noopener noreferrer" href="#">Something wrong with this result? Report it</a>
         </form>
@@ -195,7 +199,8 @@
           </fieldset>
           <details id="look" class="tucked">
             <summary>Labels, fill strength and file size</summary>
-            <label for="k-opacity">Fill strength
+            <label for="k-opacity">
+              <span class="slider-row">Fill strength <output id="k-opacity-val" for="k-opacity" class="slider-val">30%</output></span>
               <input type="range" id="k-opacity" min="0" max="100" value="30" aria-label="Fill strength percentage">
             </label>
             <label class="check"><input type="checkbox" id="k-labels"> Show each name on the map in Google Earth</label>

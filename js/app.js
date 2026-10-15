@@ -207,7 +207,43 @@ $('filter-remove').addEventListener('click', () => {
   status(`Removed ${plural(shown.length, 'item', 'items')}.`);
 });
 
-$('clear').addEventListener('click', () => { selection.clear(); renderSelection(); refreshHere(); status('List cleared.'); });
+let clearConfirmTimer = null;
+let lastClearedSelection = null;
+$('clear').addEventListener('click', () => {
+  const btn = $('clear');
+  if (btn.dataset.confirming === 'true') {
+    clearTimeout(clearConfirmTimer);
+    delete btn.dataset.confirming;
+    btn.textContent = 'Clear list';
+    btn.classList.remove('warn-confirm');
+    lastClearedSelection = new Map(selection);
+    selection.clear();
+    renderSelection();
+    refreshHere();
+    status('List cleared.');
+    const sEl = $('status');
+    const undoBtn = el('button', { className: 'linkish', style: 'margin-left: 8px; text-decoration: underline; cursor: pointer; background: none; border: none; font: inherit; color: inherit;' }, 'Undo');
+    undoBtn.addEventListener('click', () => {
+      if (lastClearedSelection) {
+        lastClearedSelection.forEach((v, k) => selection.set(k, v));
+        lastClearedSelection = null;
+        renderSelection();
+        refreshHere();
+        status('Restored list.');
+      }
+    });
+    sEl.append(undoBtn);
+  } else {
+    btn.dataset.confirming = 'true';
+    btn.textContent = 'Click again to confirm';
+    btn.classList.add('warn-confirm');
+    clearConfirmTimer = setTimeout(() => {
+      delete btn.dataset.confirming;
+      btn.textContent = 'Clear list';
+      btn.classList.remove('warn-confirm');
+    }, 4000);
+  }
+});
 
 // ---------- Click the map ----------
 let hereFeatures = [];
@@ -755,6 +791,8 @@ async function openDetail(d) {
   $('detail-source').replaceChildren(sourceAnchor(entry ? entry.page || entry.url : sourceLink(cand), title, 'src inline') || '');
   // Some verified layers hold several things (every race distance, every kind of station); the entry says which rows it means.
   $('l-where').value = entry?.where || '1=1';
+  const advSql = document.getElementById('detail-sql-details');
+  if (advSql) advSql.open = Boolean(entry?.where && entry.where !== '1=1');
   $('detail-meta').textContent = entry ? `${entry.description} Source: ${entry.attribution}.` : `${describeCandidate(cand)}${cand.copyright ? `. ${cand.copyright.slice(0, 120)}` : ''}`;
   const warn = $('detail-warn');
   const add = $('detail-add');
@@ -1127,6 +1165,8 @@ $('x-name').addEventListener('input', () => { nameTouched = true; });
 // The map follows the chosen colors so what you see is what Google Earth will show.
 function applyLook() {
   const o = lookOptions();
+  const opEl = $('k-opacity-val');
+  if (opEl) opEl.textContent = `${$('k-opacity').value}%`;
   whenReady(() => {
     map.setPaintProperty('data-fill', 'fill-color', o.fill);
     map.setPaintProperty('data-fill', 'fill-opacity', o.fillOpacity);
@@ -1137,7 +1177,7 @@ function applyLook() {
   });
 }
 ['k-line', 'k-fill', 'k-opacity', 'k-width'].forEach((id) => $(id).addEventListener('input', applyLook));
-$('k-reset').addEventListener('click', () => { $('k-fill').value = '#ffc933'; $('k-line').value = '#0a4349'; $('k-width').value = '2'; applyLook(); });
+$('k-reset').addEventListener('click', () => { $('k-fill').value = '#ffc933'; $('k-line').value = '#0a4349'; $('k-width').value = '2'; $('k-opacity').value = '30'; applyLook(); });
 
 function download(blob, filename) {
   const a = el('a', { href: URL.createObjectURL(blob), download: filename });
