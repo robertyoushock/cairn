@@ -129,9 +129,52 @@ details.advanced-sql label { font-size: 13px; margin-top: 6px; }
 details.advanced-sql .hint { display: block; margin-top: 4px; font-size: 11px; color: var(--ink-soft); }
 button.warn-confirm { background: var(--tape); color: var(--tape-ink); border-color: var(--ink); font-weight: 600; }
 
+/* Skip links */
+.skip-link {
+  position: absolute;
+  top: -9999px;
+  left: 12px;
+  z-index: 1000;
+  padding: 10px 16px;
+  background: var(--tape);
+  color: var(--tape-ink);
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: var(--radius);
+  border: 2px solid var(--ink);
+  box-shadow: 0 4px 12px rgba(0,0,0,.25);
+}
+.skip-link:focus-visible {
+  top: 12px;
+}
+
 /* Place search */
-.place { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
-.place #locate { grid-column: 1 / -1; justify-self: start; }
+.place {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.place-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.place-input-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.place-input-row input {
+  flex: 1;
+  min-width: 140px;
+}
 
 /* Type cards */
 .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
@@ -318,12 +361,14 @@ input[type='range'] { width: 100%; height: 28px; accent-color: var(--teal); curs
 .pick-note { padding: 10px 14px; color: var(--ink-soft); font-size: 13px; }
 
 /* ---- Fill and outline colors, next to the list ---- */
-.colors { display: flex; align-items: center; gap: 16px; margin-top: 10px; padding: 8px 10px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
-.colors label { flex-direction: row; align-items: center; gap: 8px; cursor: pointer; }
-.colors input[type='color'] { width: 34px; height: 28px; padding: 0; border: 1px solid var(--ink-soft); border-radius: 6px; background: none; cursor: pointer; }
-.colors { flex-wrap: wrap; row-gap: 8px; }
-.colors label.w select { padding: 4px 6px; font-size: 14px; background: var(--surface); color: var(--ink); border: 1px solid var(--line); }
-.colors .linkish { margin-left: auto; font-size: 13px; }
+.colors { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; padding: 10px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.colors-title { font-size: 13px; font-weight: 700; color: var(--ink-soft); }
+.colors-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.colors-row label { flex-direction: row; align-items: center; gap: 6px; cursor: pointer; }
+.colors-row input[type='color'] { width: 34px; height: 28px; padding: 0; border: 1px solid var(--ink-soft); border-radius: 6px; background: none; cursor: pointer; }
+.colors-row label.w select { padding: 4px 6px; font-size: 14px; background: var(--surface); color: var(--ink); border: 1px solid var(--line); }
+.colors-row .linkish { margin-left: auto; font-size: 13px; }
+.opacity-label { display: flex; flex-direction: column; gap: 4px; width: 100%; margin-top: 4px; }
 .cairn-pin { filter: drop-shadow(0 2px 3px rgba(0,0,0,.35)); pointer-events: none; }
 
 /* ---- Phones: map on top, menu as a bottom sheet, one button to switch ---- */
@@ -331,6 +376,8 @@ input[type='range'] { width: 100%; height: 28px; accent-color: var(--teal); curs
   html, body { height: 100dvh; }
   /* The map gets the space above the sheet, so its center (and whatever was just found) is never hidden under it. */
   .app { height: 100dvh; grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) auto; }
+  .panel-closed.app { grid-template-rows: 1fr; }
+  .panel-closed .panel, .panel.collapsed { display: none !important; }
   .stage { grid-area: 1 / 1; min-height: 0; }
   .panel { grid-area: 2 / 1; height: 58dvh; max-height: 58dvh; padding: 14px 14px 10px; gap: 14px; border-radius: 14px 14px 0 0; margin-top: -12px; touch-action: pan-y; overscroll-behavior-y: contain; -webkit-overflow-scrolling: touch; }
   .brand p { display: none; }

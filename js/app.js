@@ -237,6 +237,7 @@ $('clear').addEventListener('click', () => {
     btn.dataset.confirming = 'true';
     btn.textContent = 'Click again to confirm';
     btn.classList.add('warn-confirm');
+    status('Click again to confirm clearing your list.');
     clearConfirmTimer = setTimeout(() => {
       delete btn.dataset.confirming;
       btn.textContent = 'Clear list';
@@ -574,6 +575,23 @@ $('locate').addEventListener('click', () => {
 const stateSel = $('t-state');
 for (const [fips, name] of Object.entries(STATES)) stateSel.add(new Option(name, fips));
 stateSel.value = '08';
+let stateTouched = false;
+stateSel.addEventListener('change', () => { stateTouched = true; });
+
+async function autoDetectState() {
+  if (stateTouched) return;
+  const center = map.getCenter();
+  try {
+    const url = `https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/0/query?geometry=${center.lng},${center.lat}&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&where=1=1&outFields=STATE&returnGeometry=false&f=json`;
+    const res = await fetch(url);
+    if (!res.ok) return;
+    const json = await res.json();
+    const fips = json.features?.[0]?.attributes?.STATE;
+    if (fips && stateSel.querySelector(`option[value="${fips}"]`)) {
+      stateSel.value = fips;
+    }
+  } catch {}
+}
 
 let openType = null;
 const cards = $('cards');
@@ -594,6 +612,7 @@ function chooseType(type) {
   const t = BOUNDARY_TYPES[type];
   $('type-title').textContent = CARD_COPY[type][0];
   $('t-state-wrap').hidden = !t.needsState;
+  if (t.needsState) autoDetectState();
   $('t-input').closest('label').hidden = Boolean(t.noInput);
   if (t.noInput) $('t-input').value = '';
   $('t-input').placeholder = t.placeholder;

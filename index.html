@@ -20,6 +20,8 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <a href="#map" class="skip-link">Skip to map</a>
+  <a href="#panel" class="skip-link">Skip to menu</a>
   <div class="app">
     <aside class="panel" id="panel">
       <header class="brand">
@@ -28,10 +30,12 @@
       </header>
 
       <form id="place-form" class="place" role="search">
-        <label class="sr" for="place-text">Search for a place or address</label>
-        <input id="place-text" type="search" placeholder="Search a place or address" autocomplete="off">
-        <button type="submit" class="quiet">Go</button>
-        <button type="button" id="locate" class="quiet" title="Zoom to where you are">Use my location</button>
+        <label class="place-label" for="place-text"><span class="place-icon" aria-hidden="true">📍</span> Jump to city or address</label>
+        <div class="place-input-row">
+          <input id="place-text" type="search" placeholder="e.g. Denver, CO or 1437 Bannock St" autocomplete="off">
+          <button type="submit" class="quiet">Go</button>
+          <button type="button" id="locate" class="quiet" title="Zoom to where you are">Use my location</button>
+        </div>
       </form>
       <ul id="place-results" class="picklist" hidden></ul>
 
@@ -170,12 +174,19 @@
         </div>
         <ul id="feature-list" class="rows" hidden></ul>
         <div class="colors" id="list-colors" hidden>
-          <label><input type="color" id="k-fill" value="#ffc933"> Fill</label>
-          <label><input type="color" id="k-line" value="#0a4349"> Outline</label>
-          <label class="w">Width
-            <select id="k-width" aria-label="Outline width"><option value="1">Thin</option><option value="2" selected>Normal</option><option value="3">Thick</option><option value="5">Heavy</option><option value="8">Extra heavy</option></select>
+          <span class="colors-title">Map appearance</span>
+          <div class="colors-row">
+            <label><input type="color" id="k-fill" value="#ffc933"> Fill</label>
+            <label><input type="color" id="k-line" value="#0a4349"> Outline</label>
+            <label class="w">Width
+              <select id="k-width" aria-label="Outline width"><option value="1">Thin</option><option value="2" selected>Normal</option><option value="3">Thick</option><option value="5">Heavy</option><option value="8">Extra heavy</option></select>
+            </label>
+            <button type="button" id="k-reset" class="linkish">Reset</button>
+          </div>
+          <label for="k-opacity" class="opacity-label">
+            <span class="slider-row">Fill strength <output id="k-opacity-val" for="k-opacity" class="slider-val">30%</output></span>
+            <input type="range" id="k-opacity" min="0" max="100" value="30" aria-label="Fill strength percentage">
           </label>
-          <button type="button" id="k-reset" class="linkish">Reset</button>
         </div>
         <div class="row" id="list-actions" hidden>
           <span id="count"></span>
@@ -198,18 +209,13 @@
               <span><strong>Mapping software or code</strong><small>GeoJSON works in QGIS, ArcGIS and web maps.</small></span></label>
           </fieldset>
           <details id="look" class="tucked">
-            <summary>Labels, fill strength and file size</summary>
-            <label for="k-opacity">
-              <span class="slider-row">Fill strength <output id="k-opacity-val" for="k-opacity" class="slider-val">30%</output></span>
-              <input type="range" id="k-opacity" min="0" max="100" value="30" aria-label="Fill strength percentage">
-            </label>
+            <summary>Labels, attributes and file size</summary>
             <label class="check"><input type="checkbox" id="k-labels"> Show each name on the map in Google Earth</label>
             <label class="check"><input type="checkbox" id="k-attrs" checked> Include each item&rsquo;s details (attributes)</label>
             <label>Shape detail
               <select id="x-detail"></select>
               <small>Less detail makes a smaller file. Corners get slightly rounded off; nothing is removed.</small>
             </label>
-            <small>Colors and outline width (set under Check your list) and labels are saved in Google Earth files (KML and KMZ).</small>
           </details>
           <p id="size-note" class="lead"></p>
           <p id="size-warn" class="warn" role="alert" hidden></p>
