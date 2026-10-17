@@ -350,6 +350,23 @@ function accessiblePopup(p, wrap, label, { focusFirst = true } = {}) {
   });
   p.on('close', () => { if (wrap.contains(document.activeElement) || document.activeElement === document.body) map.getCanvas().focus({ preventScroll: true }); });
   if (focusFirst) requestAnimationFrame(() => (wrap.querySelector('button:not([disabled])') || wrap).focus({ preventScroll: true }));
+
+  // Prevent mouse wheel and touchmove from bubbling to MapLibre (which zooms the map instead of scrolling the popup).
+  // Also forward deltaY to scrollable list if user scrolls over header or popup padding.
+  const handleWheel = (e) => {
+    e.stopPropagation();
+    const scrollable = wrap.querySelector('.pick-list, .hits') || (wrap.scrollHeight > wrap.clientHeight ? wrap : null);
+    if (scrollable && !scrollable.contains(e.target)) {
+      scrollable.scrollTop += e.deltaY;
+    }
+  };
+  wrap.addEventListener('wheel', handleWheel, { passive: true });
+  wrap.addEventListener('touchmove', (e) => e.stopPropagation(), { passive: true });
+  const popupEl = p.getElement();
+  if (popupEl) {
+    popupEl.addEventListener('wheel', handleWheel, { passive: true });
+    popupEl.addEventListener('touchmove', (e) => e.stopPropagation(), { passive: true });
+  }
 }
 const focusPopup = (wrap) => (wrap.querySelector('button:not([disabled])') || wrap).focus({ preventScroll: true });
 
