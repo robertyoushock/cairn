@@ -18,6 +18,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
   <link rel="stylesheet" href="style.css">
+  <script>
+    (function() {
+      const t = localStorage.getItem('cairn-theme');
+      if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
 </head>
 <body>
   <a href="#map" class="skip-link">Skip to map</a>
@@ -25,7 +31,12 @@
   <div class="app">
     <aside class="panel" id="panel">
       <header class="brand">
-        <h1><img src="img/mark.svg" alt="" width="30" height="30"> Cairn</h1>
+        <div class="brand-row">
+          <h1><img src="img/mark.svg" alt="" width="30" height="30"> Cairn</h1>
+          <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+            <span id="theme-icon" aria-hidden="true">☀️</span>
+          </button>
+        </div>
         <p>Get the boundary you need and download it for Google Earth, GPS apps or mapping software.</p>
       </header>
 

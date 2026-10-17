@@ -19,8 +19,12 @@
   color-scheme: light dark;
 }
 
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme='light']) {
     --fog: #0c1519;
     --paper: #121c21;
     --surface: #18252b;
@@ -38,6 +42,26 @@
     --pin-fg: #07191d;
     --err: #e05346;
   }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --fog: #0c1519;
+  --paper: #121c21;
+  --surface: #18252b;
+  --ink: #eef3f5;
+  --ink-soft: #93a9b3;
+  --line: #263842;
+  --teal: #22b8c7;
+  --teal-dark: #199ea9;
+  --teal-link: #3ec1cd;
+  --teal-ink: #07191d;
+  --tape: #f5bc28;
+  --tape-soft: #302812;
+  --tape-ink: #10222b;
+  --pin-bg: #22b8c7;
+  --pin-fg: #07191d;
+  --err: #e05346;
 }
 
 ::selection {
@@ -70,9 +94,36 @@ body {
   gap: 18px;
 }
 
+.brand-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .brand h1 { margin: 0; font-size: 28px; font-weight: 900; letter-spacing: -0.02em; display: flex; align-items: center; gap: 9px; }
 .brand h1 img { display: block; margin-top: -3px; }
 .brand p { margin: 4px 0 0; color: var(--ink-soft); }
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  min-height: 36px;
+  min-width: 36px;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  touch-action: manipulation;
+  transition: background 0.12s, border-color 0.12s, transform 0.1s;
+}
+.theme-toggle:hover {
+  background: var(--tape-soft);
+  border-color: var(--ink);
+}
+.theme-toggle:active {
+  transform: scale(0.93);
+}
 
 h2 { margin: 0 0 8px; font-size: 17px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
 h3 { margin: 0; font-size: 15px; font-weight: 700; }
@@ -450,6 +501,7 @@ input[type='range'] { width: 100%; height: 28px; accent-color: var(--teal); curs
   .colors label.w select { min-height: 44px; padding: 6px 10px; }
   .hits .acts button { min-height: 44px; padding: 8px 14px; font-size: 13px; }
   #r-stops button { min-height: 44px; min-width: 44px; padding: 8px 12px; font-size: 13px; }
+  .theme-toggle { min-height: 44px; min-width: 44px; font-size: 18px; }
   input[type='range'] { height: 36px; }
 }
 
