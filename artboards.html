@@ -3,1366 +3,1539 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cairn — Topographic Radar & Sonar Style Exploration (5 Artboards)</title>
+  <title>Cairn — 5 Full Website Redesign Artboards (Topographic Sonar & Radar)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Schibsted+Grotesk:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Schibsted+Grotesk:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --sunset: #FE7F2D;
-      --sunset-text: #FFA66B;
-      --sunset-ink: #0E1A22;
-      --sunset-tint: rgba(254, 127, 45, 0.15);
-      --adventure: #233D4D;
-      --adventure-deep: #121F27;
-      --adventure-surface: #1B2D38;
-      --adventure-card: #203542;
-      --adventure-border: #2D4A5B;
-      --adventure-line-bright: #3D647A;
-      --topo-ink: #EDF5F7;
-      --topo-ink-soft: #9BB2BE;
-      --sonar-ring: rgba(155, 178, 190, 0.22);
-      --radar-sweep: rgba(254, 127, 45, 0.14);
+      --sans: 'Schibsted Grotesk', system-ui, -apple-system, sans-serif;
       --mono: 'JetBrains Mono', ui-monospace, monospace;
-      --sans: 'Schibsted Grotesk', system-ui, sans-serif;
+      --sunset: #FE7F2D;
+      --adventure: #233D4D;
     }
 
     * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; background: var(--adventure-deep); color: var(--topo-ink); font-family: var(--sans); }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #090E11;
+      color: #EDF6F9;
+      font-family: var(--sans);
+      min-height: 100vh;
+    }
 
-    /* Sticky Navigation Header */
-    .top-banner {
-      background: var(--adventure);
-      border-bottom: 2px solid var(--sunset);
-      padding: 14px 28px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
+    /* Top Navigation Studio Bar */
+    .studio-bar {
       position: sticky;
       top: 0;
-      z-index: 100;
-    }
-    .brand-block {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .brand-title {
-      font-size: 19px;
-      font-weight: 900;
-      letter-spacing: -0.01em;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .brand-title .logo-sq {
-      width: 14px;
-      height: 14px;
-      background: var(--sunset);
-      display: inline-block;
-    }
-    .palette-tags {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .swatch {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--mono);
-      font-size: 12px;
-      padding: 6px 10px;
-      border-radius: 4px;
-      border: 1px solid var(--adventure-border);
-      background: var(--adventure-deep);
-    }
-    .swatch-color {
-      width: 14px;
-      height: 14px;
-      border-radius: 2px;
-      border: 1px solid rgba(0,0,0,0.4);
-    }
-
-    .view-toggles {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      background: var(--adventure-deep);
-      padding: 4px;
-      border-radius: 6px;
-      border: 1px solid var(--adventure-border);
-    }
-    .view-btn {
-      font-family: var(--mono);
-      font-size: 12px;
-      font-weight: 600;
-      padding: 6px 12px;
-      border-radius: 4px;
-      border: 0;
-      background: transparent;
-      color: var(--topo-ink-soft);
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.12s;
-    }
-    .view-btn:hover { color: var(--topo-ink); }
-    .view-btn.active { background: var(--sunset); color: var(--sunset-ink); font-weight: 700; }
-
-    /* Overview Section */
-    .lead-summary {
-      padding: 36px 32px 20px;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-    .lead-summary h1 {
-      margin: 0 0 12px;
-      font-size: 32px;
-      font-weight: 900;
-      letter-spacing: -0.02em;
-    }
-    .lead-summary p {
-      margin: 0;
-      font-size: 16px;
-      color: var(--topo-ink-soft);
-      max-width: 960px;
-      line-height: 1.6;
-    }
-
-    /* Pixel Marker Laboratory Section */
-    .marker-lab {
-      max-width: 1400px;
-      margin: 16px auto 32px;
-      padding: 0 32px;
-    }
-    .lab-card {
-      background: var(--adventure-surface);
-      border: 1px solid var(--adventure-border);
-      border-radius: 12px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .lab-head {
+      z-index: 1000;
+      background: #121C22;
+      border-bottom: 2px solid var(--sunset);
+      padding: 12px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 16px;
       flex-wrap: wrap;
-      gap: 12px;
-      border-bottom: 1px solid var(--adventure-border);
-      padding-bottom: 16px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.6);
     }
-    .lab-head h2 {
-      margin: 0;
-      font-size: 18px;
-      font-weight: 700;
+    .studio-brand {
       display: flex;
       align-items: center;
       gap: 10px;
     }
-    .lab-head h2 span { color: var(--sunset-text); font-family: var(--mono); }
-    .lab-subtitle {
+    .studio-logo-sq {
+      width: 14px;
+      height: 14px;
+      background: var(--sunset);
+    }
+    .studio-title {
+      font-size: 17px;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      color: #FFF;
+    }
+    .studio-tabs {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: #090E11;
+      padding: 4px;
+      border-radius: 6px;
+      border: 1px solid #233D4D;
+    }
+    .studio-tab-btn {
       font-family: var(--mono);
       font-size: 12px;
-      color: var(--topo-ink-soft);
+      font-weight: 600;
+      padding: 6px 12px;
+      border: 0;
+      border-radius: 4px;
+      background: transparent;
+      color: #8FAAB8;
+      cursor: pointer;
+      transition: all 0.12s;
     }
-    .pixel-grid-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
-    }
-    .marker-card {
-      background: var(--adventure-deep);
-      border: 1px solid var(--adventure-border);
-      border-radius: 8px;
-      padding: 16px;
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      align-items: center;
-      gap: 16px;
-      text-align: left;
-      transition: border-color 0.15s;
-    }
-    .marker-card:hover {
-      border-color: var(--sunset-text);
-    }
-    .marker-display-box {
-      width: 80px;
-      height: 80px;
-      background: #0B1419;
-      border: 1px solid var(--adventure-border);
-      border-radius: 6px;
-      display: grid;
-      place-items: center;
-      position: relative;
-    }
-    .marker-info {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .marker-card h3 {
-      margin: 0;
-      font-size: 15px;
+    .studio-tab-btn:hover { color: #FFF; }
+    .studio-tab-btn.active {
+      background: var(--sunset);
+      color: #0E171D;
       font-weight: 700;
-      color: var(--topo-ink);
-    }
-    .marker-card p {
-      margin: 0;
-      font-size: 13px;
-      color: var(--topo-ink-soft);
-      line-height: 1.4;
     }
 
-    /* Orange Pixel SVG Markers */
-    .pixel-svg {
-      image-rendering: pixelated;
-      display: block;
-    }
-    .pulse-echo {
-      position: absolute;
-      width: 70px;
-      height: 70px;
-      border: 1px solid var(--sunset);
-      border-radius: 50%;
-      pointer-events: none;
-      animation: echoRing 2.6s infinite ease-out;
-    }
-    @keyframes echoRing {
-      0% { transform: scale(0.2); opacity: 0.9; }
-      80% { transform: scale(1.3); opacity: 0.15; }
-      100% { transform: scale(1.5); opacity: 0; }
-    }
-
-    /* Artboards Wrap */
-    .artboards-wrap {
-      max-width: 1400px;
-      margin: 20px auto 60px;
-      padding: 0 32px;
+    .studio-scale-controls {
       display: flex;
-      flex-direction: column;
-      gap: 48px;
+      align-items: center;
+      gap: 6px;
     }
-    .artboard-card {
-      background: var(--adventure-surface);
-      border: 1px solid var(--adventure-border);
-      border-radius: 14px;
-      overflow: hidden;
+    .scale-btn {
+      font-family: var(--mono);
+      font-size: 11px;
+      background: #1B2B34;
+      border: 1px solid #28414F;
+      color: #B5CBD8;
+      padding: 5px 9px;
+      border-radius: 4px;
+      cursor: pointer;
     }
-    .artboard-card.featured {
-      border: 2px solid var(--sunset);
+    .scale-btn.active {
+      border-color: var(--sunset);
+      color: var(--sunset);
     }
 
-    /* Artboard Top Strip */
-    .artboard-meta {
-      padding: 16px 24px;
-      background: var(--adventure);
-      border-bottom: 1px solid var(--adventure-border);
+    /* Sub-header / Explainer Strip */
+    .studio-info {
+      max-width: 1440px;
+      margin: 20px auto 10px;
+      padding: 0 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 12px;
-    }
-    .artboard-tag {
-      font-family: var(--mono);
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--sunset-ink);
-      background: var(--sunset);
-      padding: 3px 8px;
-      border-radius: 3px;
-    }
-    .artboard-title {
-      margin: 0;
-      font-size: 20px;
-      font-weight: 900;
-      letter-spacing: -0.01em;
-    }
-    .artboard-params {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--topo-ink-soft);
-      display: flex;
-      gap: 14px;
-    }
-
-    /* Simulator Stage */
-    .artboard-stage {
-      min-height: 480px;
-      display: grid;
-      grid-template-columns: 360px 1fr;
-      background: #0B1419;
-    }
-    @media (max-width: 860px) {
-      .artboard-stage { grid-template-columns: 1fr; }
-    }
-
-    /* Left Sidebar Simulation */
-    .sim-panel {
-      background: var(--adventure);
-      border-right: 1px solid var(--adventure-border);
-      padding: 22px 20px;
-      display: flex;
-      flex-direction: column;
       gap: 16px;
     }
-    .sim-brand-row {
+    .info-left h1 {
+      margin: 0 0 6px;
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+    .info-left p {
+      margin: 0;
+      font-size: 14px;
+      color: #8FAAB8;
+    }
+    .active-palette-swatches {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .swatch-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 5px 9px;
+      background: #15222B;
+      border: 1px solid #233D4D;
+      border-radius: 4px;
+      color: #D6E4EB;
+    }
+    .swatch-pip {
+      width: 12px;
+      height: 12px;
+      border-radius: 2px;
+      border: 1px solid rgba(0,0,0,0.4);
+    }
+
+    /* Artboard Viewport Container */
+    .artboard-stage-wrap {
+      max-width: 1440px;
+      margin: 16px auto 60px;
+      padding: 0 24px;
+    }
+    .board-container {
+      display: none;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+    .board-container.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Full Website Shell Frame */
+    .web-frame {
+      overflow: hidden;
+      border: 1px solid #233D4D;
+    }
+    .web-titlebar {
+      padding: 10px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: #8FAAB8;
     }
-    .sim-logo {
-      font-size: 20px;
+    .browser-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .b-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #233D4D;
+    }
+
+    /* Website Grid (Sidebar + Map Stage) */
+    .web-app-grid {
+      height: 780px;
+      display: grid;
+      grid-template-columns: 400px 1fr;
+      position: relative;
+    }
+    @media (max-width: 1080px) {
+      .web-app-grid { grid-template-columns: 340px 1fr; height: 720px; }
+    }
+
+    /* Common Sidebar Styles */
+    .web-panel {
+      overflow-y: auto;
+      padding: 24px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      position: relative;
+      border-right: 1px solid #233D4D;
+      font-size: 14px;
+    }
+    .web-brand {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .web-logo {
+      font-size: 24px;
       font-weight: 900;
       letter-spacing: -0.02em;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 9px;
     }
-    .sim-logo .pip {
-      width: 10px;
-      height: 10px;
-      background: var(--sunset);
-    }
-    .sim-lead {
-      margin: 0;
+    .web-tagline {
+      margin: 4px 0 0;
       font-size: 13px;
-      color: var(--topo-ink-soft);
       line-height: 1.45;
     }
-    .sim-step-heading {
-      font-family: var(--mono);
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+    .web-step-title {
+      font-size: 14px;
+      font-weight: 800;
       display: flex;
       align-items: center;
       gap: 8px;
-      color: var(--topo-ink);
+      margin: 0;
+      letter-spacing: -0.01em;
     }
-    .sim-step-num {
-      width: 18px;
-      height: 18px;
-      background: var(--sunset);
-      color: var(--sunset-ink);
-      font-weight: 900;
+    .web-step-idx {
+      width: 22px;
+      height: 22px;
       display: grid;
       place-items: center;
-      border-radius: 2px;
+      border-radius: 3px;
+      font-family: var(--mono);
+      font-weight: 900;
       font-size: 11px;
     }
-    .sim-input-group {
+
+    /* Controls in Sidebar */
+    .web-search-box {
       display: flex;
       gap: 6px;
     }
-    .sim-text-field {
+    .web-input {
       flex: 1;
-      height: 38px;
-      background: var(--adventure-deep);
-      border: 1px solid var(--adventure-border);
-      border-radius: 4px;
-      padding: 0 10px;
-      color: var(--topo-ink);
-      font-family: var(--mono);
-      font-size: 12px;
+      height: 40px;
+      padding: 0 12px;
+      font-size: 13px;
+      font-family: var(--sans);
+      border-radius: 6px;
+      border: 1px solid transparent;
+      outline: none;
     }
-    .sim-text-field:focus {
-      outline: 2px solid var(--sunset);
-      border-color: var(--sunset-text);
-    }
-    .sim-btn-action {
-      height: 38px;
-      background: var(--sunset);
-      color: var(--sunset-ink);
-      border: 0;
-      border-radius: 4px;
-      font-family: var(--mono);
-      font-size: 12px;
-      font-weight: 700;
+    .web-btn {
+      height: 40px;
       padding: 0 14px;
+      font-weight: 700;
+      font-size: 13px;
+      border-radius: 6px;
+      border: 0;
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      touch-action: manipulation;
     }
-    .sim-chips-list {
+
+    /* Chips */
+    .web-chips {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
     }
-    .sim-filter-chip {
-      font-family: var(--mono);
+    .web-chip {
       font-size: 12px;
-      padding: 5px 10px;
-      border-radius: 4px;
-      background: var(--adventure-surface);
-      border: 1px solid var(--adventure-border);
-      color: var(--topo-ink-soft);
+      font-weight: 600;
+      padding: 6px 11px;
+      border-radius: 999px;
+      border: 1px solid transparent;
       cursor: pointer;
     }
-    .sim-filter-chip.active {
-      border-color: var(--sunset-text);
-      color: var(--sunset-text);
-      background: var(--sunset-tint);
-      font-weight: 700;
+
+    /* Route Box */
+    .web-route-box {
+      padding: 4px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
-    .sim-stops-list {
+    .web-modes-row {
+      display: flex;
+      gap: 6px;
+    }
+    .web-mode-pill {
+      flex: 1;
+      text-align: center;
+      padding: 6px 8px;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+    .web-stops {
       list-style: none;
       margin: 0;
       padding: 0;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
     }
-    .sim-stop-item {
+    .web-stop {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       padding: 8px 10px;
-      background: var(--adventure-deep);
-      border: 1px solid var(--adventure-border);
-      border-radius: 4px;
+      border-radius: 6px;
       font-size: 13px;
+      border: 1px solid transparent;
     }
-    .sim-stop-idx {
-      width: 18px;
-      height: 18px;
-      background: var(--sunset);
-      color: var(--sunset-ink);
-      font-family: var(--mono);
-      font-weight: 900;
-      font-size: 11px;
+    .web-stop-num {
+      width: 20px;
+      height: 20px;
       display: grid;
       place-items: center;
       border-radius: 2px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 900;
+      flex: none;
     }
-    .sim-stop-label {
+    .web-stop-name {
       flex: 1;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      color: var(--topo-ink);
+      font-weight: 600;
     }
-    .sim-stop-badge {
+    .web-stop-badge {
       font-family: var(--mono);
       font-size: 11px;
-      color: var(--topo-ink-soft);
+      flex: none;
     }
 
-    /* Map Stage Simulation */
-    .sim-map-canvas {
-      position: relative;
-      background: #0B1419;
-      overflow: hidden;
-      padding: 20px;
+    /* Download Box */
+    .web-download-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
     }
-    .topo-vector-layer {
+    .web-fmt-card {
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .web-fmt-card strong { font-size: 13px; }
+
+    /* Map Stage */
+    .web-stage {
+      position: relative;
+      overflow: hidden;
+    }
+    .web-map-svg {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
-      pointer-events: none;
     }
 
-    /* Sonar Range Circles */
-    .sonar-rings {
+    /* Floating Mode Bar */
+    .web-modebar {
       position: absolute;
-      top: 50%;
-      left: 50%;
+      top: 14px;
+      left: 14px;
+      z-index: 10;
+      display: flex;
+      padding: 3px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    }
+    .web-modebar-btn {
+      padding: 7px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 999px;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    /* Floating Navigation Controls */
+    .web-map-ctrls {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .web-ctrl-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: var(--mono);
+      font-size: 14px;
+    }
+
+    /* Floating HUD telemetry badges */
+    .web-hud-top {
+      position: absolute;
+      bottom: 14px;
+      left: 14px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+    .web-hud-pill {
+      padding: 5px 10px;
+      border-radius: 4px;
+      border: 1px solid transparent;
+      backdrop-filter: blur(4px);
+    }
+
+    /* Map Marker */
+    .web-beacon {
+      position: absolute;
       transform: translate(-50%, -50%);
-      width: 440px;
-      height: 440px;
-      border-radius: 50%;
-      border: 1px solid var(--sonar-ring);
-      pointer-events: none;
-      box-shadow: 
-        inset 0 0 0 65px transparent,
-        inset 0 0 0 66px var(--sonar-ring),
-        inset 0 0 0 135px transparent,
-        inset 0 0 0 136px var(--sonar-ring),
-        inset 0 0 0 200px transparent,
-        inset 0 0 0 201px var(--sonar-ring);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      z-index: 20;
     }
-    .sonar-axis-h {
+    .beacon-pill-tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 3px;
+      white-space: nowrap;
+      border: 1px solid transparent;
+    }
+
+    /* Popups on Map */
+    .web-popup {
+      position: absolute;
+      width: 250px;
+      padding: 14px 16px;
+      border-radius: 8px;
+      z-index: 25;
+      border: 1px solid transparent;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .web-popup-name { font-weight: 800; font-size: 15px; }
+    .web-popup-meta { font-family: var(--mono); font-size: 11px; }
+
+    /* ========================================================= */
+    /* THEME 1: DEEP SEA SONAR & BATHYMETRY                      */
+    /* ========================================================= */
+    .theme-1 .web-titlebar { background: #13222B; border-color: #233D4D; }
+    .theme-1 .web-panel { background: #152530; border-color: #233D4D; color: #EDF6F9; }
+    .theme-1 .web-brand h1 { color: #FFF; }
+    .theme-1 .web-brand p { color: #8FAAB8; }
+    .theme-1 .web-step-idx { background: #FE7F2D; color: #0E171D; }
+    .theme-1 .web-input { background: #0F1B22; border-color: #233D4D; color: #FFF; }
+    .theme-1 .web-btn-primary { background: #FE7F2D; color: #0E171D; }
+    .theme-1 .web-btn-primary:hover { filter: brightness(1.08); }
+    .theme-1 .web-chip { background: #1C3140; border-color: #29475C; color: #9AB6C7; }
+    .theme-1 .web-chip.active { background: rgba(254,127,45,0.18); border-color: #FE7F2D; color: #FE7F2D; }
+    .theme-1 .web-mode-pill { background: #182C38; border-color: #2A4C61; color: #9AB6C7; }
+    .theme-1 .web-mode-pill.active { background: #FE7F2D; border-color: #FE7F2D; color: #0E171D; }
+    .theme-1 .web-stop { background: #152631; border-color: #233D4D; }
+    .theme-1 .web-stop-num { background: #FE7F2D; color: #0E171D; }
+    .theme-1 .web-stop-name { color: #FFF; }
+    .theme-1 .web-stop-badge { color: #8FAAB8; }
+    .theme-1 .web-fmt-card { background: #182C38; border-color: #233D4D; color: #D7E5EC; }
+    .theme-1 .web-fmt-card.active { border-color: #FE7F2D; background: rgba(254,127,45,0.14); color: #FFF; }
+    .theme-1 .web-stage { background: #0A141A; }
+    .theme-1 .web-modebar { background: #152530; border-color: #233D4D; }
+    .theme-1 .web-modebar-btn { color: #8FAAB8; }
+    .theme-1 .web-modebar-btn.active { background: #FE7F2D; color: #0E171D; }
+    .theme-1 .web-ctrl-btn { background: #152530; border-color: #233D4D; color: #D7E5EC; }
+    .theme-1 .web-hud-pill { background: rgba(14,27,34,0.85); border-color: #233D4D; color: #8FAAB8; }
+    .theme-1 .beacon-pill-tag { background: #0E1B22; border-color: #FE7F2D; color: #FE7F2D; }
+    .theme-1 .web-popup { background: #152530; border-color: #FE7F2D; color: #FFF; }
+    .theme-1 .web-popup-meta { color: #8FAAB8; }
+
+    /* Radar sweep animation */
+    .sonar-beam-1 {
       position: absolute;
       top: 50%;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: var(--sonar-ring);
-      pointer-events: none;
-    }
-    .sonar-axis-v {
-      position: absolute;
-      left: 50%;
-      top: 0;
-      height: 100%;
-      width: 1px;
-      background: var(--sonar-ring);
-      pointer-events: none;
-    }
-    .radar-beam {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 460px;
-      height: 460px;
-      margin-top: -230px;
-      margin-left: -230px;
+      left: 55%;
+      width: 600px;
+      height: 600px;
+      margin-top: -300px;
+      margin-left: -300px;
       border-radius: 50%;
-      background: conic-gradient(from 0deg, transparent 0deg, transparent 310deg, var(--radar-sweep) 360deg);
-      animation: sweepRotate 7s linear infinite;
+      background: conic-gradient(from 0deg, transparent 0deg, transparent 310deg, rgba(254,127,45,0.18) 360deg);
+      animation: rotateSweep 8s linear infinite;
       pointer-events: none;
     }
-    @keyframes sweepRotate {
+    @keyframes rotateSweep {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
 
-    /* Beacon on Map */
-    .map-pin-anchor {
-      position: absolute;
-      transform: translate(-50%, -50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      z-index: 25;
-    }
-    .map-pin-pill {
-      font-family: var(--mono);
-      font-size: 11px;
-      font-weight: 700;
-      background: var(--adventure-deep);
-      border: 1px solid var(--sunset);
-      color: var(--sunset-text);
-      padding: 3px 8px;
-      border-radius: 3px;
-      white-space: nowrap;
-    }
+    /* ========================================================= */
+    /* THEME 2: ALPINE TOPO RECON (USGS VECTOR FIELD)            */
+    /* ========================================================= */
+    .theme-2 .web-titlebar { background: #17242C; border-color: #2E4757; }
+    .theme-2 .web-panel { background: #1A2832; border-color: #2E4757; color: #F2F7F9; }
+    .theme-2 .web-brand h1 { color: #FFF; font-family: var(--mono); letter-spacing: 0.5px; }
+    .theme-2 .web-brand p { color: #9BB2BE; }
+    .theme-2 .web-step-idx { background: #FE7F2D; color: #111A20; font-weight: 900; }
+    .theme-2 .web-input { background: #111B22; border-color: #2E4757; color: #FFF; border-left: 3px solid #FE7F2D; }
+    .theme-2 .web-btn-primary { background: #233D4D; border: 1px solid #FE7F2D; color: #FFF; font-family: var(--mono); }
+    .theme-2 .web-btn-primary:hover { background: #FE7F2D; color: #111A20; }
+    .theme-2 .web-chip { background: #213340; border-color: #335063; color: #A7BECC; }
+    .theme-2 .web-chip.active { background: #FE7F2D; border-color: #FE7F2D; color: #111A20; }
+    .theme-2 .web-mode-pill { background: #1A2933; border-color: #2F4C5E; color: #9BB2BE; }
+    .theme-2 .web-mode-pill.active { background: #FE7F2D; border-color: #FE7F2D; color: #111A20; }
+    .theme-2 .web-stop { background: #16242D; border-color: #2E4757; border-left: 2px solid #FE7F2D; }
+    .theme-2 .web-stop-num { background: #121E26; color: #FE7F2D; border: 1px solid #FE7F2D; }
+    .theme-2 .web-stop-name { color: #FFF; }
+    .theme-2 .web-stop-badge { color: #E29578; font-weight: 700; }
+    .theme-2 .web-fmt-card { background: #1B2933; border-color: #2E4757; color: #E0EBF0; }
+    .theme-2 .web-fmt-card.active { border-color: #FE7F2D; color: #FFF; }
+    .theme-2 .web-stage { background: #0E161C; }
+    .theme-2 .web-modebar { background: #182630; border-color: #2E4757; border-radius: 4px; }
+    .theme-2 .web-modebar-btn { color: #9BB2BE; border-radius: 4px; font-family: var(--mono); }
+    .theme-2 .web-modebar-btn.active { background: #FE7F2D; color: #111A20; }
+    .theme-2 .web-ctrl-btn { background: #182630; border-color: #2E4757; color: #FFF; border-radius: 4px; }
+    .theme-2 .web-hud-pill { background: #142129; border-color: #2E4757; color: #9BB2BE; border-radius: 4px; }
+    .theme-2 .beacon-pill-tag { background: #FE7F2D; color: #111A20; font-weight: 800; border-radius: 2px; }
+    .theme-2 .web-popup { background: #182630; border-color: #FE7F2D; color: #FFF; border-radius: 4px; }
+    .theme-2 .web-popup-meta { color: #E29578; }
 
-    /* Inspection Popup */
-    .sim-popup-box {
-      position: absolute;
-      background: var(--adventure-surface);
-      border: 1px solid var(--sunset);
-      border-radius: 6px;
-      padding: 12px 14px;
-      width: 240px;
-      z-index: 30;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .sim-popup-title {
-      font-weight: 700;
-      font-size: 14px;
-      color: var(--topo-ink);
-    }
-    .sim-popup-sub {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--topo-ink-soft);
-    }
-    .sim-popup-btn {
-      margin-top: 4px;
-      height: 32px;
-      background: var(--sunset);
-      color: var(--sunset-ink);
-      font-family: var(--mono);
-      font-size: 12px;
-      font-weight: 700;
-      border: 0;
-      border-radius: 3px;
-      cursor: pointer;
-    }
+    /* ========================================================= */
+    /* THEME 3: MINIMALIST AERO RADAR INSTRUMENT                 */
+    /* ========================================================= */
+    .theme-3 .web-titlebar { background: #141E25; border-color: #233D4D; }
+    .theme-3 .web-panel { background: #16222B; border-color: #233D4D; color: #FFF; }
+    .theme-3 .web-brand h1 { color: #FFF; font-weight: 900; }
+    .theme-3 .web-brand p { color: #7E9AA8; }
+    .theme-3 .web-step-idx { background: #101B22; color: #FE7F2D; border: 1px solid #FE7F2D; font-weight: 800; border-radius: 50%; }
+    .theme-3 .web-input { background: #0E171E; border: 1px solid #233D4D; border-radius: 20px; color: #FFF; }
+    .theme-3 .web-btn-primary { background: #FE7F2D; color: #000; border-radius: 20px; font-weight: 800; }
+    .theme-3 .web-chip { background: transparent; border-color: #274254; color: #8BA7B8; border-radius: 20px; }
+    .theme-3 .web-chip.active { background: #101B22; border-color: #FE7F2D; color: #FE7F2D; }
+    .theme-3 .web-mode-pill { background: #182630; border-color: transparent; color: #8BA7B8; }
+    .theme-3 .web-mode-pill.active { background: #FE7F2D; color: #000; font-weight: 800; }
+    .theme-3 .web-stop { background: #132029; border-color: #233D4D; border-radius: 8px; }
+    .theme-3 .web-stop-num { background: #101B22; color: #FE7F2D; border: 1px solid #FE7F2D; border-radius: 50%; }
+    .theme-3 .web-stop-name { color: #FFF; }
+    .theme-3 .web-stop-badge { color: #48CAE4; font-weight: 700; }
+    .theme-3 .web-fmt-card { background: #121D25; border-color: #233D4D; border-radius: 8px; color: #FFF; }
+    .theme-3 .web-fmt-card.active { border-color: #FE7F2D; background: rgba(254,127,45,0.1); }
+    .theme-3 .web-stage { background: #0B1218; }
+    .theme-3 .web-modebar { background: #16222B; border-color: #233D4D; }
+    .theme-3 .web-modebar-btn { color: #8BA7B8; }
+    .theme-3 .web-modebar-btn.active { background: #FE7F2D; color: #000; font-weight: 800; }
+    .theme-3 .web-ctrl-btn { background: #16222B; border-color: #233D4D; color: #FFF; border-radius: 20px; }
+    .theme-3 .web-hud-pill { background: #121E26; border-color: #233D4D; color: #8BA7B8; border-radius: 20px; }
+    .theme-3 .beacon-pill-tag { background: #121E26; border-color: #FE7F2D; color: #FFF; border-radius: 20px; }
+    .theme-3 .web-popup { background: #16222B; border-color: #233D4D; color: #FFF; border-radius: 12px; }
+    .theme-3 .web-popup-meta { color: #48CAE4; }
 
-    /* HUD Corner Telemetry */
-    .hud-layer {
-      position: absolute;
-      inset: 16px;
-      pointer-events: none;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .hud-header, .hud-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--mono);
-      font-size: 12px;
-    }
-    .hud-badge {
-      background: rgba(18, 31, 39, 0.9);
-      border: 1px solid var(--adventure-border);
-      padding: 5px 10px;
-      border-radius: 4px;
-      color: var(--topo-ink-soft);
-    }
-    .hud-badge strong { color: var(--sunset-text); }
+    /* ========================================================= */
+    /* THEME 4: TACTICAL SATELLITE MGRS TERMINAL                 */
+    /* ========================================================= */
+    .theme-4 .web-titlebar { background: #0E171D; border-color: #294555; }
+    .theme-4 .web-panel { background: #101B22; border-color: #294555; color: #E9F2F5; font-family: var(--mono); }
+    .theme-4 .web-brand h1 { color: #FE7F2D; font-size: 20px; letter-spacing: 1px; }
+    .theme-4 .web-brand p { color: #7693A1; font-size: 12px; }
+    .theme-4 .web-step-idx { background: #FE7F2D; color: #080F14; border-radius: 0; }
+    .theme-4 .web-input { background: #080F14; border: 1px solid #294555; color: #FFF; border-radius: 0; }
+    .theme-4 .web-btn-primary { background: #FE7F2D; color: #080F14; border-radius: 0; font-family: var(--mono); font-weight: 900; }
+    .theme-4 .web-chip { background: #162631; border-color: #2E4E62; color: #8AAAB8; border-radius: 0; font-family: var(--mono); }
+    .theme-4 .web-chip.active { background: #FE7F2D; color: #080F14; font-weight: 900; border-color: #FE7F2D; }
+    .theme-4 .web-mode-pill { background: #162631; border-color: #294555; color: #8AAAB8; border-radius: 0; font-family: var(--mono); }
+    .theme-4 .web-mode-pill.active { background: #FE7F2D; border-color: #FE7F2D; color: #080F14; font-weight: 900; }
+    .theme-4 .web-stop { background: #0E181F; border: 1px solid #294555; border-radius: 0; }
+    .theme-4 .web-stop-num { background: #FE7F2D; color: #080F14; border-radius: 0; }
+    .theme-4 .web-stop-name { color: #FFF; font-family: var(--mono); }
+    .theme-4 .web-stop-badge { color: #FFB703; }
+    .theme-4 .web-fmt-card { background: #0E181F; border: 1px solid #294555; border-radius: 0; color: #FFF; font-family: var(--mono); }
+    .theme-4 .web-fmt-card.active { border-color: #FE7F2D; background: rgba(254,127,45,0.2); }
+    .theme-4 .web-stage { background: #060B0E; }
+    .theme-4 .web-modebar { background: #101B22; border-color: #294555; border-radius: 0; }
+    .theme-4 .web-modebar-btn { color: #8AAAB8; border-radius: 0; font-family: var(--mono); }
+    .theme-4 .web-modebar-btn.active { background: #FE7F2D; color: #080F14; font-weight: 900; }
+    .theme-4 .web-ctrl-btn { background: #101B22; border-color: #294555; color: #FE7F2D; border-radius: 0; }
+    .theme-4 .web-hud-pill { background: #0E181F; border-color: #294555; color: #8AAAB8; border-radius: 0; }
+    .theme-4 .beacon-pill-tag { background: #FE7F2D; color: #080F14; font-weight: 900; border-radius: 0; }
+    .theme-4 .web-popup { background: #101B22; border: 1px solid #FE7F2D; border-radius: 0; color: #FFF; font-family: var(--mono); }
+    .theme-4 .web-popup-meta { color: #FFB703; }
 
-    /* Tactical Corners */
-    .corner-bracket {
-      position: absolute;
-      width: 14px;
-      height: 14px;
-      border-color: var(--sunset-text);
-      border-style: solid;
-      pointer-events: none;
-    }
-    .c-top-left { top: 0; left: 0; border-width: 2px 0 0 2px; }
-    .c-top-right { top: 0; right: 0; border-width: 2px 2px 0 0; }
-    .c-bot-left { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
-    .c-bot-right { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+    /* ========================================================= */
+    /* THEME 5: WARM TOPOGRAPHIC DUSK (CANYON & SUNSET)          */
+    /* ========================================================= */
+    .theme-5 .web-titlebar { background: #1A1F26; border-color: #344350; }
+    .theme-5 .web-panel { background: #1C232B; border-color: #344350; color: #FAF5F0; }
+    .theme-5 .web-brand h1 { color: #FAF5F0; }
+    .theme-5 .web-brand p { color: #A5B4C0; }
+    .theme-5 .web-step-idx { background: #FE7F2D; color: #14171C; }
+    .theme-5 .web-input { background: #13181E; border: 1px solid #344350; color: #FFF; }
+    .theme-5 .web-btn-primary { background: #FE7F2D; color: #14171C; font-weight: 800; }
+    .theme-5 .web-chip { background: #262F39; border-color: #3D4C5A; color: #CAD7E2; }
+    .theme-5 .web-chip.active { background: rgba(254,127,45,0.2); border-color: #FE7F2D; color: #FE7F2D; }
+    .theme-5 .web-mode-pill { background: #222B34; border-color: #384856; color: #CAD7E2; }
+    .theme-5 .web-mode-pill.active { background: #FE7F2D; color: #14171C; border-color: #FE7F2D; font-weight: 800; }
+    .theme-5 .web-stop { background: #171D24; border-color: #344350; }
+    .theme-5 .web-stop-num { background: #FE7F2D; color: #14171C; }
+    .theme-5 .web-stop-name { color: #FAF5F0; }
+    .theme-5 .web-stop-badge { color: #F4A261; font-weight: 700; }
+    .theme-5 .web-fmt-card { background: #182027; border-color: #344350; color: #FAF5F0; }
+    .theme-5 .web-fmt-card.active { border-color: #FE7F2D; background: rgba(254,127,45,0.18); }
+    .theme-5 .web-stage { background: #0E1216; }
+    .theme-5 .web-modebar { background: #1C232B; border-color: #344350; }
+    .theme-5 .web-modebar-btn { color: #A5B4C0; }
+    .theme-5 .web-modebar-btn.active { background: #FE7F2D; color: #14171C; font-weight: 800; }
+    .theme-5 .web-ctrl-btn { background: #1C232B; border-color: #344350; color: #FAF5F0; }
+    .theme-5 .web-hud-pill { background: #171E25; border-color: #344350; color: #A5B4C0; }
+    .theme-5 .beacon-pill-tag { background: #14181F; border-color: #FE7F2D; color: #FE7F2D; }
+    .theme-5 .web-popup { background: #1C232B; border-color: #FE7F2D; color: #FAF5F0; }
+    .theme-5 .web-popup-meta { color: #F4A261; }
 
-    /* Explainer Strip */
-    .artboard-explainer {
-      padding: 20px 24px;
-      background: var(--adventure-deep);
-      border-top: 1px solid var(--adventure-border);
+    /* Grid Comparison View */
+    .compare-grid-mode {
       display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+      gap: 28px;
     }
-    @media (max-width: 860px) {
-      .artboard-explainer { grid-template-columns: 1fr; }
+    .compare-grid-mode .board-container {
+      display: block !important;
     }
-    .explainer-left h3 {
-      margin: 0 0 6px;
-      font-size: 14px;
-      font-family: var(--mono);
-      color: var(--sunset-text);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
+    .compare-grid-mode .web-app-grid {
+      height: 520px;
+      grid-template-columns: 200px 1fr;
     }
-    .explainer-left p {
-      margin: 0;
-      font-size: 14px;
-      color: var(--topo-ink-soft);
-      line-height: 1.5;
+    .compare-grid-mode .web-panel {
+      padding: 12px;
+      gap: 10px;
+      font-size: 11px;
     }
-    .explainer-right {
-      background: var(--adventure-surface);
-      border: 1px solid var(--adventure-border);
-      border-radius: 6px;
-      padding: 12px 14px;
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--topo-ink-soft);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
+    .compare-grid-mode .web-logo {
+      font-size: 16px;
     }
-    .explainer-right span strong { color: var(--topo-ink); }
+    .compare-grid-mode .web-tagline {
+      display: none;
+    }
 
-    /* Decision Footer */
-    .decision-footer {
-      max-width: 1400px;
-      margin: 40px auto 80px;
-      padding: 32px;
-      background: var(--adventure);
-      border: 2px solid var(--sunset);
-      border-radius: 14px;
-      text-align: center;
-    }
-    .decision-footer h2 {
-      margin: 0 0 10px;
-      font-size: 26px;
-      font-weight: 900;
-    }
-    .decision-footer p {
-      margin: 0 auto 24px;
-      max-width: 760px;
-      color: var(--topo-ink-soft);
-      font-size: 15px;
-      line-height: 1.5;
-    }
-    .choice-pills {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .choice-pill {
-      background: var(--adventure-surface);
-      border: 1px solid var(--adventure-border);
-      color: var(--topo-ink);
-      font-family: var(--mono);
-      font-size: 13px;
-      font-weight: 700;
-      padding: 10px 18px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.12s;
-    }
-    .choice-pill:hover {
-      border-color: var(--sunset-text);
-      color: var(--sunset-text);
-      background: var(--sunset-tint);
+    /* Pixel Icons (SVG) */
+    .pixel-svg-icon {
+      image-rendering: pixelated;
+      display: block;
     }
   </style>
 </head>
 <body>
 
-  <!-- Sticky Header -->
-  <header class="top-banner">
-    <div class="brand-block">
-      <span class="brand-title">
-        <span class="logo-sq"></span>
-        CAIRN // RADAR & TOPO DESIGN SYSTEM
-      </span>
+  <!-- Top Studio Navigation Bar -->
+  <header class="studio-bar">
+    <div class="studio-brand">
+      <div class="studio-logo-sq"></div>
+      <div class="studio-title">CAIRN // 5 FULL WEBSITE REDESIGN ARTBOARDS</div>
     </div>
-    <div class="palette-tags">
-      <div class="swatch"><span class="swatch-color" style="background:#FE7F2D;"></span> Sunset #FE7F2D</div>
-      <div class="swatch"><span class="swatch-color" style="background:#233D4D;"></span> Adventure #233D4D</div>
-      <div class="swatch"><span class="swatch-color" style="background:#121F27;"></span> Abyss #121F27</div>
-      <div class="swatch"><span class="swatch-color" style="background:#9BB2BE;"></span> Telemetry #9BB2BE</div>
-    </div>
-    <div class="view-toggles">
-      <a class="view-btn active" href="#overview">All 5 Boards</a>
-      <a class="view-btn" href="#b1">01 Sonar</a>
-      <a class="view-btn" href="#b2">02 Alpine</a>
-      <a class="view-btn" href="#b3">03 Minimal</a>
-      <a class="view-btn" href="#b4">04 Tactical</a>
-      <a class="view-btn" href="#b5">05 Nocturne</a>
+
+    <!-- Artboard Switcher Tabs -->
+    <nav class="studio-tabs">
+      <button class="studio-tab-btn active" onclick="switchBoard('board-1')">01 Deep Sonar</button>
+      <button class="studio-tab-btn" onclick="switchBoard('board-2')">02 Alpine Topo</button>
+      <button class="studio-tab-btn" onclick="switchBoard('board-3')">03 Aero Radar</button>
+      <button class="studio-tab-btn" onclick="switchBoard('board-4')">04 Tactical MGRS</button>
+      <button class="studio-tab-btn" onclick="switchBoard('board-5')">05 Warm Dusk</button>
+      <button class="studio-tab-btn" onclick="switchBoard('compare')">Split Compare All 5</button>
+    </nav>
+
+    <!-- Scale Toggles -->
+    <div class="studio-scale-controls">
+      <button class="scale-btn active" onclick="setScale(1)">100%</button>
+      <button class="scale-btn" onclick="setScale(0.85)">85%</button>
+      <button class="scale-btn" onclick="setScale(0.7)">70%</button>
     </div>
   </header>
 
-  <main id="overview">
-    <!-- Overview Header -->
-    <section class="lead-summary">
-      <h1>Topographic Radar & Sonar Field Explorations</h1>
-      <p>
-        Design study for Cairn’s updated visual identity. Using your <strong>Sunset (#FE7F2D)</strong> and <strong>Adventure (#233D4D)</strong> color palette, paired with high-precision vector topography, concentric sonar range rings, and a <strong>crisp orange pixel map marker</strong>.
-      </p>
-    </section>
+  <!-- Explainer Header -->
+  <section class="studio-info">
+    <div class="info-left">
+      <h1 id="board-heading">Artboard 01 — Deep Sea Sonar & Bathymetry</h1>
+      <p id="board-desc">Hydrographic surveillance aesthetic with deep oceanic abyss navy, concentric radar range rings, and radiating Sunset Orange pixel markers.</p>
+    </div>
+    <div class="active-palette-swatches" id="swatches-display">
+      <div class="swatch-tag"><span class="swatch-pip" style="background:#FE7F2D;"></span> #FE7F2D Sunset</div>
+      <div class="swatch-tag"><span class="swatch-pip" style="background:#233D4D;"></span> #233D4D Adventure</div>
+      <div class="swatch-tag"><span class="swatch-pip" style="background:#121F27;"></span> #121F27 Abyss Canvas</div>
+      <div class="swatch-tag"><span class="swatch-pip" style="background:#2EE6A8;"></span> #2EE6A8 Sonar Cyan</div>
+    </div>
+  </section>
 
-    <!-- Pixel Marker Laboratory -->
-    <section class="marker-lab">
-      <div class="lab-card">
-        <div class="lab-head">
-          <h2><span>■</span> Orange Pixel Map Marker Variations</h2>
-          <span class="lab-subtitle">Engineered on a 16×16 raster pixel matrix for maximum map contrast</span>
+  <!-- Interactive Artboards Container -->
+  <main class="artboard-stage-wrap" id="main-stage">
+
+    <!-- ============================================================== -->
+    <!-- ARTBOARD 01: DEEP SEA SONAR & BATHYMETRY                       -->
+    <!-- ============================================================== -->
+    <div class="board-container active theme-1" id="board-1">
+      <div class="web-frame">
+        <div class="web-titlebar">
+          <div class="browser-dots">
+            <span class="b-dot" style="background:#E05346;"></span>
+            <span class="b-dot" style="background:#F5BC28;"></span>
+            <span class="b-dot" style="background:#22B8C7;"></span>
+          </div>
+          <div>cairn.earth // hydrographic-sonar-recon-mode</div>
+          <div>DATUM: WGS84 // 50NM RADAR</div>
         </div>
-        <div class="pixel-grid-row">
 
-          <!-- Marker A: Concentric Pixel Pip -->
-          <div class="marker-card">
-            <div class="marker-display-box">
+        <div class="web-app-grid">
+          <!-- Sidebar -->
+          <aside class="web-panel">
+            <div class="web-brand">
+              <div class="web-logo">
+                <svg width="22" height="22" viewBox="0 0 14 14" class="pixel-svg-icon">
+                  <rect x="0" y="0" width="14" height="14" fill="#0A141A"/>
+                  <rect x="1" y="1" width="12" height="12" fill="#FE7F2D"/>
+                  <rect x="3" y="3" width="8" height="8" fill="#0A141A"/>
+                  <rect x="5" y="5" width="4" height="4" fill="#FE7F2D"/>
+                </svg>
+                <span>Cairn</span>
+              </div>
+              <button class="web-ctrl-btn" title="Toggle Light/Dark">☀️</button>
+            </div>
+            <p class="web-tagline">Find US boundaries and export them cleanly for GPS apps, Google Earth or GIS software.</p>
+
+            <div class="web-step-title"><span class="web-step-idx">1</span> Find boundaries</div>
+            <div class="web-search-box">
+              <input type="search" class="web-input" value="Olympic National Park, WA">
+              <button class="web-btn web-btn-primary">Ping</button>
+            </div>
+
+            <div class="web-chips">
+              <span class="web-chip active">Parks & Forests</span>
+              <span class="web-chip">Counties</span>
+              <span class="web-chip">Watersheds</span>
+              <span class="web-chip">Native Lands</span>
+              <span class="web-chip">Zip Codes</span>
+            </div>
+
+            <!-- Route Builder Section -->
+            <div class="web-route-box">
+              <div style="font-weight:700; font-size:13px; display:flex; justify-content:space-between; align-items:center;">
+                <span>Make a route</span>
+                <span style="font-family:var(--mono); font-size:11px; color:#FE7F2D;">3 STOPS ACTIVE</span>
+              </div>
+              <div class="web-modes-row">
+                <span class="web-mode-pill active">Drive</span>
+                <span class="web-mode-pill">Bike</span>
+                <span class="web-mode-pill">Walk</span>
+                <span class="web-mode-pill">Fly + drive</span>
+              </div>
+              <ul class="web-stops">
+                <li class="web-stop">
+                  <span class="web-stop-num">1</span>
+                  <span class="web-stop-name">Hurricane Ridge Trailhead</span>
+                  <span class="web-stop-badge">5,242 FT</span>
+                </li>
+                <li class="web-stop">
+                  <span class="web-stop-num">2</span>
+                  <span class="web-stop-name">Hoh Rain Forest Ranger Station</span>
+                  <span class="web-stop-badge">578 FT</span>
+                </li>
+                <li class="web-stop">
+                  <span class="web-stop-num">3</span>
+                  <span class="web-stop-name">Rialto Beach Pacific Rim</span>
+                  <span class="web-stop-badge">0 FT</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Step 2: Layer List -->
+            <div class="web-step-title"><span class="web-step-idx">2</span> Check your list</div>
+            <div style="border-left: 3px solid #FE7F2D; padding: 6px 10px; display:flex; flex-direction:column; gap:4px;">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-weight:700; color:#FFF;">Olympic National Park</span>
+                <span style="font-family:var(--mono); font-size:11px; color:#2EE6A8;">922,651 AC</span>
+              </div>
+              <div style="display:flex; gap:8px; align-items:center; margin-top:4px;">
+                <span style="display:inline-block; width:14px; height:14px; border-radius:2px; background:#FE7F2D;"></span>
+                <span style="font-size:12px; color:#8FAAB8;">Stroke: 2px Orange</span>
+                <button style="margin-left:auto; background:none; border:0; color:#E05346; cursor:pointer; font-size:12px;">Remove</button>
+              </div>
+            </div>
+
+            <!-- Step 3: Download Formats -->
+            <div class="web-step-title"><span class="web-step-idx">3</span> Download</div>
+            <div class="web-download-row">
+              <div class="web-fmt-card active">
+                <input type="radio" checked name="fmt1">
+                <div><strong>KML</strong><br><span style="color:#8FAAB8; font-size:11px;">Google Earth</span></div>
+              </div>
+              <div class="web-fmt-card">
+                <input type="radio" name="fmt1">
+                <div><strong>KMZ</strong><br><span style="color:#8FAAB8; font-size:11px;">Compressed</span></div>
+              </div>
+              <div class="web-fmt-card">
+                <input type="radio" name="fmt1">
+                <div><strong>GPX</strong><br><span style="color:#8FAAB8; font-size:11px;">GPS Watch</span></div>
+              </div>
+              <div class="web-fmt-card">
+                <input type="radio" name="fmt1">
+                <div><strong>GeoJSON</strong><br><span style="color:#8FAAB8; font-size:11px;">QGIS / Web</span></div>
+              </div>
+            </div>
+
+            <button class="web-btn web-btn-primary" style="margin-top:auto; height:44px; font-size:14px;">
+              Download Boundary (284 KB)
+            </button>
+          </aside>
+
+          <!-- Map Stage -->
+          <main class="web-stage">
+            <svg class="web-map-svg" viewBox="0 0 1000 780" fill="none">
+              <!-- Bathymetric & Topo Curves -->
+              <path d="M 50 140 C 220 80, 380 240, 560 190 C 740 140, 840 60, 960 120" stroke="#1D3847" stroke-width="1.2"/>
+              <path d="M 30 220 C 200 160, 420 320, 600 260 C 780 200, 880 140, 980 200" stroke="#254A5E" stroke-width="1.6"/>
+              <path d="M 20 320 C 240 240, 460 410, 650 340 C 820 270, 910 240, 1000 310" stroke="#233D4D" stroke-width="2"/>
+              <path d="M 40 430 C 270 340, 500 520, 710 440 C 860 370, 930 340, 1010 420" stroke="#2EE6A8" stroke-width="1" stroke-dasharray="6 3"/>
+              <!-- Polygon Boundary Simulation -->
+              <polygon points="460,220 620,180 740,240 820,380 720,490 540,460 430,340" fill="rgba(35,61,77,0.4)" stroke="#FE7F2D" stroke-width="2.5"/>
+              <text x="560" y="320" fill="#EDF6F9" font-family="JetBrains Mono" font-size="13" font-weight="700">OLYMPIC NATIONAL PARK</text>
+              <text x="560" y="340" fill="#8FAAB8" font-family="JetBrains Mono" font-size="11">PERIMETER: 420 KM // 922,651 ACRES</text>
+            </svg>
+
+            <!-- Radar Concentric Rings & Rotating Sweep -->
+            <div class="sonar-rings" style="top:50%; left:60%;"></div>
+            <div class="sonar-beam-1"></div>
+
+            <!-- Floating Mode Bar -->
+            <div class="web-modebar">
+              <button class="web-modebar-btn active">Inspect</button>
+              <button class="web-modebar-btn">Pick an area</button>
+              <button class="web-modebar-btn">Route</button>
+            </div>
+
+            <!-- Floating Map Navigation Buttons -->
+            <div class="web-map-ctrls">
+              <button class="web-ctrl-btn">+</button>
+              <button class="web-ctrl-btn">−</button>
+              <button class="web-ctrl-btn">🧭</button>
+            </div>
+
+            <!-- Orange Pixel Map Marker on Hurricane Ridge -->
+            <div class="web-beacon" style="top: 28%; left: 52%;">
               <div class="pulse-echo"></div>
-              <svg class="pixel-svg" width="28" height="28" viewBox="0 0 14 14">
-                <rect x="0" y="0" width="14" height="14" fill="#0B1419"/>
+              <svg width="28" height="28" viewBox="0 0 14 14" class="pixel-svg-icon">
+                <rect x="0" y="0" width="14" height="14" fill="#0A141A"/>
                 <rect x="1" y="1" width="12" height="12" fill="#FE7F2D"/>
-                <rect x="3" y="3" width="8" height="8" fill="#0B1419"/>
+                <rect x="3" y="3" width="8" height="8" fill="#0A141A"/>
                 <rect x="5" y="5" width="4" height="4" fill="#FE7F2D"/>
               </svg>
+              <span class="beacon-pill-tag">STOP 01 // 5,242 FT</span>
             </div>
-            <div class="marker-info">
-              <h3>A. Concentric Pixel Pip</h3>
-              <p>Concentric square pixel beacon with an isolated center pip and a radiating sonar echo ripple.</p>
-            </div>
-          </div>
 
-          <!-- Marker B: Pixel Cairn Stack -->
-          <div class="marker-card">
-            <div class="marker-display-box">
-              <svg class="pixel-svg" width="28" height="28" viewBox="0 0 14 14">
-                <rect x="5" y="1" width="4" height="2" fill="#FFFFFF"/>
-                <rect x="3" y="4" width="8" height="3" fill="#FE7F2D"/>
-                <rect x="1" y="8" width="12" height="4" fill="#FE7F2D"/>
-                <rect x="0" y="12" width="14" height="2" fill="#0B1419"/>
-              </svg>
+            <!-- Interactive Inspection Popup -->
+            <div class="web-popup" style="top: 38%; left: 66%;">
+              <div class="web-popup-name">Olympic National Park</div>
+              <div class="web-popup-meta">FEDERAL CONSERVATION LAND</div>
+              <div style="font-size:12px; color:#EDF6F9; margin:4px 0;">Boundary is selected and ready to download.</div>
+              <button class="web-btn web-btn-primary" style="height:32px; font-size:12px; margin-top:4px;">
+                Download as KML
+              </button>
             </div>
-            <div class="marker-info">
-              <h3>B. Pixel Cairn Stack</h3>
-              <p>Stepped 3-tier pixel rock pile cairn in Sunset Orange, crowned with a bright white peak stone.</p>
-            </div>
-          </div>
 
-          <!-- Marker C: Tactical Survey Reticle -->
-          <div class="marker-card">
-            <div class="marker-display-box">
-              <svg class="pixel-svg" width="28" height="28" viewBox="0 0 14 14">
-                <rect x="5" y="0" width="4" height="14" fill="#FE7F2D"/>
-                <rect x="0" y="5" width="14" height="4" fill="#FE7F2D"/>
-                <rect x="5" y="5" width="4" height="4" fill="#0B1419"/>
-              </svg>
+            <!-- Bottom Telemetry Badges -->
+            <div class="web-hud-top">
+              <div class="web-hud-pill"><strong>SONAR:</strong> 360° ACTIVE</div>
+              <div class="web-hud-pill">LAT 47.8021 / LON -123.6044</div>
+              <div class="web-hud-pill">SCALE: <strong>1:50,000</strong></div>
             </div>
-            <div class="marker-info">
-              <h3>C. Tactical Crosshair Reticle</h3>
-              <p>Precision pixel crosshair with a centered optical aperture for boundary vertex snapping.</p>
-            </div>
-          </div>
-
-          <!-- Marker D: Stepped Pixel Pin -->
-          <div class="marker-card">
-            <div class="marker-display-box">
-              <svg class="pixel-svg" width="28" height="28" viewBox="0 0 14 14">
-                <rect x="3" y="0" width="8" height="2" fill="#FE7F2D"/>
-                <rect x="1" y="2" width="12" height="6" fill="#FE7F2D"/>
-                <rect x="3" y="8" width="8" height="2" fill="#FE7F2D"/>
-                <rect x="5" y="10" width="4" height="2" fill="#FE7F2D"/>
-                <rect x="6" y="12" width="2" height="2" fill="#FE7F2D"/>
-                <rect x="5" y="4" width="4" height="2" fill="#0B1419"/>
-              </svg>
-            </div>
-            <div class="marker-info">
-              <h3>D. Stepped Waypoint Pin</h3>
-              <p>Classic map waypoint teardrop pin rendered as stepped, crisp 45-degree pixel geometry.</p>
-            </div>
-          </div>
-
+          </main>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- Artboards Section -->
-    <section class="artboards-wrap">
-
-      <!-- ================= ARTBOARD 1 ================= -->
-      <article class="artboard-card featured" id="b1">
-        <div class="artboard-meta">
-          <div style="display:flex; align-items:center; gap:12px;">
-            <span class="artboard-tag">ARTBOARD 01</span>
-            <h2 class="artboard-title">Bathymetric Deep Sonar</h2>
+    <!-- ============================================================== -->
+    <!-- ARTBOARD 02: ALPINE TOPO RECON (USGS VECTOR FIELD)             -->
+    <!-- ============================================================== -->
+    <div class="board-container theme-2" id="board-2">
+      <div class="web-frame">
+        <div class="web-titlebar">
+          <div class="browser-dots">
+            <span class="b-dot"></span><span class="b-dot"></span><span class="b-dot"></span>
           </div>
-          <div class="artboard-params">
-            <span>RINGS: 25NM / 50NM</span>
-            <span>TONE: ADVENTURE #233D4D</span>
-            <span>BEACON: PIXEL PIP</span>
-          </div>
+          <div>cairn.earth // usgs-vector-topographic-recon</div>
+          <div>GRID: UTM ZONE 13N // DATUM: NAD83</div>
         </div>
-        <div class="artboard-stage">
-          <!-- Sidebar Simulation -->
-          <div class="sim-panel">
-            <div class="sim-brand-row">
-              <div class="sim-logo"><span class="pip"></span> CAIRN</div>
-              <span class="swatch" style="padding:3px 8px;">HYDRO_TOPO</span>
-            </div>
-            <p class="sim-lead">Hydrographic & topographic boundary finder.</p>
-            <div class="sim-step-heading"><span class="sim-step-num">1</span> Boundary Radar Search</div>
-            <div class="sim-input-group">
-              <input type="text" class="sim-text-field" value="Grand Canyon National Park" readonly>
-              <button class="sim-btn-action">PING</button>
-            </div>
-            <div class="sim-chips-list">
-              <span class="sim-filter-chip active">Parks & Forests</span>
-              <span class="sim-filter-chip">Counties</span>
-              <span class="sim-filter-chip">Watersheds</span>
-            </div>
-            <div class="sim-step-heading" style="margin-top:6px;"><span class="sim-step-num">2</span> Route Waypoints</div>
-            <ul class="sim-stops-list">
-              <li class="sim-stop-item">
-                <span class="sim-stop-idx">1</span>
-                <span class="sim-stop-label">South Rim Overlook</span>
-                <span class="sim-stop-badge">7,000 FT</span>
-              </li>
-              <li class="sim-stop-item">
-                <span class="sim-stop-idx">2</span>
-                <span class="sim-stop-label">Phantom Ranch Footpath</span>
-                <span class="sim-stop-badge">2,460 FT</span>
-              </li>
-            </ul>
-          </div>
 
-          <!-- Map Simulation -->
-          <div class="sim-map-canvas">
-            <svg class="topo-vector-layer" viewBox="0 0 800 500" fill="none">
-              <path d="M 50 120 C 180 80, 260 210, 420 180 C 580 150, 680 80, 780 140" stroke="#2D4A5B" stroke-width="1.2" stroke-dasharray="4 2"/>
-              <path d="M 30 180 C 160 140, 290 260, 440 220 C 590 180, 690 140, 790 200" stroke="#2D4A5B" stroke-width="1"/>
-              <path d="M 40 250 C 190 200, 310 320, 470 280 C 620 240, 710 200, 810 270" stroke="#3D647A" stroke-width="1.8"/>
-              <path d="M 20 320 C 180 270, 340 380, 500 330 C 640 290, 720 270, 800 330" stroke="#2D4A5B" stroke-width="1"/>
-              <text x="470" y="272" fill="#9BB2BE" font-family="JetBrains Mono" font-size="12">INDEX 2,400M</text>
-            </svg>
-            <div class="sonar-rings"></div>
-            <div class="sonar-axis-h"></div>
-            <div class="sonar-axis-v"></div>
-            <div class="radar-beam"></div>
+        <div class="web-app-grid">
+          <!-- Sidebar -->
+          <aside class="web-panel">
+            <div class="web-brand">
+              <div class="web-logo">
+                <svg width="22" height="22" viewBox="0 0 14 14" class="pixel-svg-icon">
+                  <rect x="5" y="1" width="4" height="2" fill="#FFFFFF"/>
+                  <rect x="3" y="4" width="8" height="3" fill="#FE7F2D"/>
+                  <rect x="1" y="8" width="12" height="4" fill="#FE7F2D"/>
+                  <rect x="0" y="12" width="14" height="2" fill="#111A20"/>
+                </svg>
+                <span>CAIRN_TOPO</span>
+              </div>
+              <button class="web-ctrl-btn">☀️</button>
+            </div>
+            <p class="web-tagline">High-relief vector contour boundaries and mountain pass route plotting.</p>
 
-            <!-- Pixel Marker on Map -->
-            <div class="map-pin-anchor" style="top: 48%; left: 52%;">
-              <div class="pulse-echo" style="width:60px; height:60px;"></div>
-              <svg class="pixel-svg" width="24" height="24" viewBox="0 0 14 14">
-                <rect x="0" y="0" width="14" height="14" fill="#0B1419"/>
-                <rect x="1" y="1" width="12" height="12" fill="#FE7F2D"/>
-                <rect x="3" y="3" width="8" height="8" fill="#0B1419"/>
-                <rect x="5" y="5" width="4" height="4" fill="#FE7F2D"/>
+            <div class="web-step-title"><span class="web-step-idx">1</span> Locate Boundary / Peak</div>
+            <div class="web-search-box">
+              <input type="search" class="web-input" value="Rocky Mountain Wilderness, CO">
+              <button class="web-btn web-btn-primary">Acquire</button>
+            </div>
+
+            <div class="web-chips">
+              <span class="web-chip active">Wilderness</span>
+              <span class="web-chip">14ers (Peaks)</span>
+              <span class="web-chip">Ridgelines</span>
+              <span class="web-chip">Passes</span>
+              <span class="web-chip">Forests</span>
+            </div>
+
+            <!-- Route Builder Section -->
+            <div class="web-route-box">
+              <div style="font-weight:700; font-size:13px; display:flex; justify-content:space-between;">
+                <span>Trail Route</span>
+                <span style="font-family:var(--mono); color:#FE7F2D;">EL PROFILE ACTIVE</span>
+              </div>
+              <div class="web-modes-row">
+                <span class="web-mode-pill">Drive</span>
+                <span class="web-mode-pill active">Hike</span>
+                <span class="web-mode-pill">Scramble</span>
+                <span class="web-mode-pill">Ski</span>
+              </div>
+              <ul class="web-stops">
+                <li class="web-stop">
+                  <span class="web-stop-num">01</span>
+                  <span class="web-stop-name">Longs Peak Trailhead</span>
+                  <span class="web-stop-badge">9,400 FT</span>
+                </li>
+                <li class="web-stop">
+                  <span class="web-stop-num">02</span>
+                  <span class="web-stop-name">Chasm Lake Cirque</span>
+                  <span class="web-stop-badge">11,800 FT</span>
+                </li>
+                <li class="web-stop">
+                  <span class="web-stop-num">03</span>
+                  <span class="web-stop-name">The Keyhole Ridge</span>
+                  <span class="web-stop-badge">13,100 FT</span>
+                </li>
+                <li class="web-stop">
+                  <span class="web-stop-num">04</span>
+                  <span class="web-stop-name">Longs Peak Summit</span>
+                  <span class="web-stop-badge">14,259 FT</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Elevation Profile Bar -->
+            <div style="border-left: 3px solid #FE7F2D; padding: 6px 10px;">
+              <div style="font-family:var(--mono); font-size:11px; color:#9BB2BE; margin-bottom:6px;">ELEVATION PROFILE: +4,859' GAIN</div>
+              <svg width="100%" height="40" viewBox="0 0 200 40" fill="none">
+                <path d="M 0 35 L 50 30 L 100 22 L 150 12 L 195 2 L 195 40 L 0 40 Z" fill="rgba(254,127,45,0.2)"/>
+                <path d="M 0 35 L 50 30 L 100 22 L 150 12 L 195 2" stroke="#FE7F2D" stroke-width="2"/>
               </svg>
-              <div class="map-pin-pill">WP-01 // 36°03'N 112°08'W</div>
             </div>
 
-            <!-- Inspection Popup -->
-            <div class="sim-popup-box" style="top: 24%; left: 60%;">
-              <div class="corner-bracket c-top-left"></div>
-              <div class="corner-bracket c-top-right"></div>
-              <div class="corner-bracket c-bot-left"></div>
-              <div class="corner-bracket c-bot-right"></div>
-              <div class="sim-popup-title">Grand Canyon National Park</div>
-              <div class="sim-popup-sub">ELEV: 2,134M // 1.2M ACRES</div>
-              <button class="sim-popup-btn">+ ADD BOUNDARY TO LIST</button>
-            </div>
+            <button class="web-btn web-btn-primary" style="margin-top:auto; height:44px;">
+              Export Alpine GPX Track (48 KB)
+            </button>
+          </aside>
 
-            <!-- HUD Telemetry -->
-            <div class="hud-layer">
-              <div class="hud-header">
-                <div class="hud-badge"><strong>SONAR RANGE:</strong> 50 KM</div>
-                <div class="hud-badge">LAT 36.0544 / LON -112.1401</div>
-              </div>
-              <div class="hud-footer">
-                <div class="hud-badge">CONTOUR INTERVAL: <strong>40M</strong></div>
-                <div class="hud-badge">BEARING: <strong>042° NE</strong></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="artboard-explainer">
-          <div class="explainer-left">
-            <h3>Visual Thesis: Bathymetric Sonar with Concentric Elevation Rings</h3>
-            <p>
-              Rich abyss field (#121F27) with deep Adventure (#233D4D) panels. Faint concentric range rings and an authentic rotating radar sweep beam illuminate vector elevation curves. The Sunset Orange (#FE7F2D) pixel marker stands out with crisp contrast.
-            </p>
-          </div>
-          <div class="explainer-right">
-            <span><strong>Primary Field:</strong> #121F27 Abyss</span>
-            <span><strong>Panels:</strong> #233D4D Adventure</span>
-            <span><strong>Accent:</strong> #FE7F2D Sunset</span>
-            <span><strong>Telemetry:</strong> 12px Mono Insets</span>
-          </div>
-        </div>
-      </article>
-
-      <!-- ================= ARTBOARD 2 ================= -->
-      <article class="artboard-card" id="b2">
-        <div class="artboard-meta">
-          <div style="display:flex; align-items:center; gap:12px;">
-            <span class="artboard-tag">ARTBOARD 02</span>
-            <h2 class="artboard-title">Alpine Topo Recon (Expedition Field)</h2>
-          </div>
-          <div class="artboard-params">
-            <span>STYLE: CRISP VECTOR TOPOGRAPHY</span>
-            <span>INDEX: RETICLE BRACKETS</span>
-            <span>BEACON: PIXEL CAIRN STACK</span>
-          </div>
-        </div>
-        <div class="artboard-stage">
-          <!-- Sidebar Simulation -->
-          <div class="sim-panel" style="background:#172A36;">
-            <div class="sim-brand-row">
-              <div class="sim-logo" style="font-family:var(--mono); letter-spacing:1px;">
-                <span style="color:var(--sunset)">[▲]</span> CAIRN_TOPO
-              </div>
-              <span class="swatch" style="border-color:var(--sunset); color:var(--sunset);">ZONE 13S</span>
-            </div>
-            <p class="sim-lead">Highland contour elevation & vector boundaries.</p>
-            <div class="sim-step-heading"><span class="sim-step-num">1</span> Peak / Boundary Search</div>
-            <div class="sim-input-group">
-              <input type="text" class="sim-text-field" value="Rocky Mountain Wilderness" readonly style="border-left:3px solid var(--sunset);">
-              <button class="sim-btn-action">ACQUIRE</button>
-            </div>
-            <div class="sim-chips-list">
-              <span class="sim-filter-chip active">Wilderness Areas</span>
-              <span class="sim-filter-chip">Ridgelines</span>
-              <span class="sim-filter-chip">14ers (Peaks)</span>
-            </div>
-            <div class="sim-step-heading" style="margin-top:6px;"><span class="sim-step-num">2</span> Expedition Stops</div>
-            <ul class="sim-stops-list">
-              <li class="sim-stop-item" style="border-left:2px solid var(--sunset);">
-                <span class="sim-stop-idx">1</span>
-                <span class="sim-stop-label">Longs Peak Trailhead</span>
-                <span class="sim-stop-badge">9,400 FT</span>
-              </li>
-              <li class="sim-stop-item">
-                <span class="sim-stop-idx">2</span>
-                <span class="sim-stop-label">Chasm Lake Cirque</span>
-                <span class="sim-stop-badge">11,800 FT</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Map Simulation -->
-          <div class="sim-map-canvas" style="background:#0F1C23;">
-            <svg class="topo-vector-layer" viewBox="0 0 800 500" fill="none">
-              <ellipse cx="420" cy="240" rx="270" ry="170" stroke="#253E4E" stroke-width="1.2"/>
-              <ellipse cx="420" cy="240" rx="210" ry="130" stroke="#253E4E" stroke-width="1.2"/>
-              <ellipse cx="420" cy="240" rx="160" ry="100" stroke="#3D647A" stroke-width="1.8"/>
-              <ellipse cx="420" cy="240" rx="110" ry="70" stroke="#253E4E" stroke-width="1.2"/>
-              <ellipse cx="420" cy="240" rx="65" ry="40" stroke="#3D647A" stroke-width="2"/>
-              <ellipse cx="420" cy="240" rx="24" ry="16" stroke="#FE7F2D" stroke-width="1.5" stroke-dasharray="2 2"/>
-              <text x="424" y="244" fill="#FE7F2D" font-family="JetBrains Mono" font-size="12" font-weight="700">SUMMIT 14,259'</text>
-              <text x="590" y="244" fill="#9BB2BE" font-family="JetBrains Mono" font-size="12">12,000 FT INDEX</text>
+          <!-- Map Stage -->
+          <main class="web-stage">
+            <svg class="web-map-svg" viewBox="0 0 1000 780" fill="none">
+              <!-- Concentric Isohypses -->
+              <ellipse cx="600" cy="380" rx="360" ry="240" stroke="#223947" stroke-width="1.2"/>
+              <ellipse cx="600" cy="380" rx="300" ry="190" stroke="#223947" stroke-width="1.2"/>
+              <ellipse cx="600" cy="380" rx="240" ry="150" stroke="#375D73" stroke-width="2"/>
+              <text x="845" y="385" fill="#9BB2BE" font-family="JetBrains Mono" font-size="11">12,000' INDEX</text>
+              <ellipse cx="600" cy="380" rx="180" ry="110" stroke="#223947" stroke-width="1.2"/>
+              <ellipse cx="600" cy="380" rx="120" ry="70" stroke="#375D73" stroke-width="2"/>
+              <text x="725" y="385" fill="#9BB2BE" font-family="JetBrains Mono" font-size="11">13,000' INDEX</text>
+              <ellipse cx="600" cy="380" rx="60" ry="35" stroke="#FE7F2D" stroke-width="2" stroke-dasharray="3 3"/>
+              <!-- Trail Path Line -->
+              <path d="M 280 580 L 380 490 L 480 430 L 585 380" stroke="#FE7F2D" stroke-width="3" stroke-dasharray="6 3"/>
             </svg>
 
             <!-- Coordinate Crosshairs -->
-            <div style="position:absolute; top:25%; left:30%; font-family:var(--mono); font-size:12px; color:#9BB2BE;">+ 40°15'N</div>
-            <div style="position:absolute; top:70%; left:75%; font-family:var(--mono); font-size:12px; color:#9BB2BE;">+ 105°36'W</div>
+            <div style="position:absolute; top:20%; left:30%; font-family:var(--mono); font-size:11px; color:#8FAAB8;">+ 40°15'30"N</div>
+            <div style="position:absolute; top:75%; left:80%; font-family:var(--mono); font-size:11px; color:#8FAAB8;">+ 105°36'45"W</div>
 
-            <!-- Pixel Cairn Marker on Summit -->
-            <div class="map-pin-anchor" style="top: 48%; left: 52%;">
-              <svg class="pixel-svg" width="28" height="28" viewBox="0 0 14 14">
+            <!-- Mode Bar -->
+            <div class="web-modebar">
+              <button class="web-modebar-btn">Inspect</button>
+              <button class="web-modebar-btn active">Alpine Route</button>
+              <button class="web-modebar-btn">Topography</button>
+            </div>
+
+            <!-- Pixel Cairn Marker -->
+            <div class="web-beacon" style="top: 48%; left: 59%;">
+              <svg width="32" height="32" viewBox="0 0 14 14" class="pixel-svg-icon">
                 <rect x="5" y="1" width="4" height="2" fill="#FFFFFF"/>
                 <rect x="3" y="4" width="8" height="3" fill="#FE7F2D"/>
                 <rect x="1" y="8" width="12" height="4" fill="#FE7F2D"/>
-                <rect x="0" y="12" width="14" height="2" fill="#0B1419"/>
+                <rect x="0" y="12" width="14" height="2" fill="#111A20"/>
               </svg>
-              <div class="map-pin-pill" style="background:var(--sunset); color:var(--sunset-ink); font-weight:700;">
-                PEAK 01 // LONGS PEAK
-              </div>
+              <span class="beacon-pill-tag">LONGS PEAK // 14,259 FT</span>
             </div>
 
-            <!-- HUD Overlay -->
-            <div class="hud-layer">
-              <div class="hud-header">
-                <div class="hud-badge"><strong style="color:var(--sunset)">RELIEF PROFILE:</strong> HIGH ALPINE</div>
-                <div class="hud-badge">DATUM: WGS 84 / UTM 13N</div>
-              </div>
-              <div class="hud-footer">
-                <div class="hud-badge">SUMMIT COORD: <strong>40.2550° N, 105.6151° W</strong></div>
-                <div class="hud-badge">SLOPE: <strong>32°</strong></div>
-              </div>
+            <!-- HUD Badges -->
+            <div class="web-hud-top">
+              <div class="web-hud-pill">CONTOUR INTERVAL: <strong>40 FT</strong></div>
+              <div class="web-hud-pill">SLOPE ASPECT: <strong>32° EAST</strong></div>
+              <div class="web-hud-pill">TRAIL DISTANCE: <strong>14.5 MI RT</strong></div>
             </div>
-          </div>
+          </main>
         </div>
-        <div class="artboard-explainer">
-          <div class="explainer-left">
-            <h3>Visual Thesis: USGS Topographic Survey & Highland Mountaineering</h3>
-            <p>
-              Emphasizes concentric contour lines with variable weights (heavy index contours), elevation text callouts, and peak spot heights. The map marker is an orange pixel rock cairn stack with an apex beacon.
-            </p>
-          </div>
-          <div class="explainer-right">
-            <span><strong>Contour Strategy:</strong> USGS Isohypses</span>
-            <span><strong>Reticles:</strong> Survey Crosshairs (+)</span>
-            <span><strong>Accent:</strong> #FE7F2D Alpine Orange</span>
-            <span><strong>Marker:</strong> Pixel Cairn Stack</span>
-          </div>
-        </div>
-      </article>
+      </div>
+    </div>
 
-      <!-- ================= ARTBOARD 3 ================= -->
-      <article class="artboard-card" id="b3">
-        <div class="artboard-meta">
-          <div style="display:flex; align-items:center; gap:12px;">
-            <span class="artboard-tag">ARTBOARD 03</span>
-            <h2 class="artboard-title">Minimalist Vector Radar (Swiss Precision)</h2>
+    <!-- ============================================================== -->
+    <!-- ARTBOARD 03: MINIMALIST AERO RADAR INSTRUMENT                  -->
+    <!-- ============================================================== -->
+    <div class="board-container theme-3" id="board-3">
+      <div class="web-frame">
+        <div class="web-titlebar">
+          <div class="browser-dots">
+            <span class="b-dot"></span><span class="b-dot"></span><span class="b-dot"></span>
           </div>
-          <div class="artboard-specs">
-            <span>PHILOSOPHY: AIRSPACE REDUCTION</span>
-            <span>HAIRLINE: 0.8PX GRIDS</span>
-            <span>BEACON: SINGLE 8PX PIXEL BEACON</span>
-          </div>
+          <div>cairn.earth // aero-radar-dispatch-terminal</div>
+          <div>AIRSPACE SECTOR: ZDV // 10M DEM RESOLUTION</div>
         </div>
-        <div class="artboard-stage">
-          <!-- Sidebar Simulation -->
-          <div class="sim-panel" style="background:#1B2E3A;">
-            <div class="sim-brand-row">
-              <div class="sim-logo" style="font-weight:900;">
-                <span class="pip" style="margin-right:4px;"></span> CAIRN
-              </div>
-              <span class="swatch" style="color:var(--sunset);">CALIBRATED</span>
-            </div>
-            <p class="sim-lead">Quiet, ultra-precise spatial boundary instrument.</p>
-            <div class="sim-input-group" style="margin-top:8px;">
-              <input type="text" class="sim-text-field" value="Sierra Nevada Crest" readonly style="border-radius:20px; padding-left:14px;">
-              <button class="sim-btn-action" style="border-radius:20px; padding:0 16px;">Find</button>
-            </div>
-            <div class="sim-chips-list">
-              <span class="sim-filter-chip" style="border-radius:20px;">Counties</span>
-              <span class="sim-filter-chip active" style="border-radius:20px;">Public Lands</span>
-              <span class="sim-filter-chip" style="border-radius:20px;">Routes</span>
-            </div>
-            <div style="margin-top:auto; padding:14px; background:var(--adventure-deep); border-radius:8px; border:1px solid var(--adventure-border);">
-              <div style="font-size:12px; font-family:var(--mono); color:var(--topo-ink-soft); margin-bottom:4px;">DOWNLOAD FORMATS</div>
-              <div style="font-weight:700; font-size:14px; color:var(--sunset);">KML / KMZ / GPX / GeoJSON</div>
-            </div>
-          </div>
 
-          <!-- Map Simulation -->
-          <div class="sim-map-canvas" style="background:#0D171C;">
-            <svg class="topo-vector-layer" viewBox="0 0 800 500" fill="none">
-              <path d="M 0 100 Q 200 40, 400 120 T 800 80" stroke="rgba(155,178,190,0.15)" stroke-width="0.8"/>
-              <path d="M 0 170 Q 220 110, 420 190 T 800 150" stroke="rgba(155,178,190,0.15)" stroke-width="0.8"/>
-              <path d="M 0 240 Q 240 180, 440 260 T 800 220" stroke="rgba(254,127,45,0.45)" stroke-width="1.2"/>
-              <path d="M 0 310 Q 260 250, 460 330 T 800 290" stroke="rgba(155,178,190,0.15)" stroke-width="0.8"/>
+        <div class="web-app-grid">
+          <!-- Sidebar -->
+          <aside class="web-panel">
+            <div class="web-brand">
+              <div class="web-logo">
+                <span style="display:inline-block; width:10px; height:10px; background:#FE7F2D; border-radius:2px;"></span>
+                <span>Cairn</span>
+              </div>
+              <span style="font-family:var(--mono); font-size:11px; color:#48CAE4;">[RADAR OK]</span>
+            </div>
+            <p class="web-tagline">Aeronautical vector airspace & boundary dispatch instrument.</p>
+
+            <div class="web-search-box">
+              <input type="search" class="web-input" value="Sierra Nevada Crest Line">
+              <button class="web-btn web-btn-primary">Dispatch</button>
+            </div>
+
+            <div class="web-chips">
+              <span class="web-chip active">Public Lands</span>
+              <span class="web-chip">Flight Corridors</span>
+              <span class="web-chip">National Forests</span>
+              <span class="web-chip">Counties</span>
+            </div>
+
+            <!-- Route Builder -->
+            <div class="web-route-box">
+              <div style="font-size:13px; font-weight:700; color:#FFF; display:flex; justify-content:space-between;">
+                <span>Flight / Drive Waypoints</span>
+                <span style="font-family:var(--mono); font-size:11px; color:#FE7F2D;">3 FIXES</span>
+              </div>
+              <ul class="web-stops">
+                <li class="web-stop">
+                  <span class="web-stop-num">1</span>
+                  <span class="web-stop-name">Lake Tahoe Basin</span>
+                  <span class="web-stop-badge">6,225 FT</span>
+                </li>
+                <li class="web-stop">
+                  <span class="web-stop-num">2</span>
+                  <span class="web-stop-name">Tioga Pass Entry</span>
+                  <span class="web-stop-badge">9,943 FT</span>
+                </li>
+                <li class="web-stop">
+                  <span class="web-stop-num">3</span>
+                  <span class="web-stop-name">Mount Whitney Ridge</span>
+                  <span class="web-stop-badge">14,505 FT</span>
+                </li>
+              </ul>
+            </div>
+
+            <div style="margin-top:auto; border-left: 3px solid #48CAE4; padding: 6px 10px;">
+              <div style="font-family:var(--mono); font-size:11px; color:#7E9AA8; margin-bottom:4px;">AIRSPACE CLEARANCE</div>
+              <div style="font-size:14px; font-weight:700; color:#FFF;">Sierra High Route Corridor</div>
+              <div style="font-family:var(--mono); font-size:11px; color:#48CAE4; margin-top:2px;">180 NM // 4 BOUNDARIES OVERLAPPING</div>
+            </div>
+
+            <button class="web-btn web-btn-primary" style="height:44px;">
+              Export Boundary Package
+            </button>
+          </aside>
+
+          <!-- Map Stage -->
+          <main class="web-stage">
+            <svg class="web-map-svg" viewBox="0 0 1000 780" fill="none">
+              <!-- Aerospace Radar Grid -->
+              <circle cx="580" cy="390" r="320" stroke="#1B2F3D" stroke-width="1"/>
+              <circle cx="580" cy="390" r="220" stroke="#1B2F3D" stroke-width="1"/>
+              <circle cx="580" cy="390" r="120" stroke="rgba(254,127,45,0.4)" stroke-width="1.2" stroke-dasharray="4 4"/>
+              <line x1="580" y1="70" x2="580" y2="710" stroke="#1B2F3D" stroke-width="1"/>
+              <line x1="260" y1="390" x2="900" y2="390" stroke="#1B2F3D" stroke-width="1"/>
+              <!-- Flight Boundary Line -->
+              <path d="M 380 620 Q 520 480, 580 390 T 780 180" stroke="#48CAE4" stroke-width="2"/>
             </svg>
 
-            <!-- Minimal Circular Radar Range -->
-            <div style="position:absolute; top:50%; left:50%; width:200px; height:200px; transform:translate(-50%,-50%); border:1px dashed rgba(254,127,45,0.35); border-radius:50%;"></div>
-
-            <!-- Single Orange Pixel Beacon -->
-            <div class="map-pin-anchor" style="top: 50%; left: 50%;">
-              <div style="width:12px; height:12px; background:var(--sunset); border:1px solid #0B1419;"></div>
-              <div style="margin-top:6px; font-family:var(--mono); font-size:12px; font-weight:700; color:var(--topo-ink); background:var(--adventure-deep); padding:3px 10px; border-radius:12px; border:1px solid var(--sunset);">
-                MT. WHITNEY 4,421M
-              </div>
+            <!-- Mode Bar -->
+            <div class="web-modebar">
+              <button class="web-modebar-btn active">Airspace Radar</button>
+              <button class="web-modebar-btn">Flight Corridors</button>
             </div>
 
-            <!-- HUD Overlay -->
-            <div class="hud-layer">
-              <div class="hud-header">
-                <div class="hud-badge" style="border-radius:20px;">INSTRUMENT: READY</div>
-                <div class="hud-badge" style="border-radius:20px;">10M DEM RESOLUTION</div>
-              </div>
-              <div class="hud-footer">
-                <div class="hud-badge" style="border-radius:20px;">SWISS VECTOR TOPO</div>
-                <div class="hud-badge" style="border-radius:20px;">36°34'43" N 118°17'31" W</div>
-              </div>
+            <!-- Single 10px Orange Pixel Beacon -->
+            <div class="web-beacon" style="top: 50%; left: 58%;">
+              <div style="width:12px; height:12px; background:#FE7F2D; border:1px solid #000;"></div>
+              <span class="beacon-pill-tag">FIX 03 // MT WHITNEY (14,505')</span>
             </div>
-          </div>
+
+            <!-- HUD Badges -->
+            <div class="web-hud-top">
+              <div class="web-hud-pill">SWISS RADAR MATRIX</div>
+              <div class="web-hud-pill">BEARING: <strong>164° SSE</strong></div>
+              <div class="web-hud-pill">ALTITUDE: <strong>FL180</strong></div>
+            </div>
+          </main>
         </div>
-        <div class="artboard-explainer">
-          <div class="explainer-left">
-            <h3>Visual Thesis: Aeronautical Radar & Swiss Cartographic Instrument</h3>
-            <p>
-              Ultra-restrained, calm visual hierarchy. Replaces dense decoration with whisper-thin vector topo curves, generous negative space, and pill-shaped telemetry cards. The orange pixel marker stands as an unambiguous point of focus.
-            </p>
-          </div>
-          <div class="explainer-right">
-            <span><strong>Purity:</strong> High Negative Space</span>
-            <span><strong>Grid:</strong> 0.8px Hairline</span>
-            <span><strong>Marker:</strong> 12px Solid Pixel Square</span>
-            <span><strong>Tone:</strong> Quiet Precision</span>
-          </div>
-        </div>
-      </article>
+      </div>
+    </div>
 
-      <!-- ================= ARTBOARD 4 ================= -->
-      <article class="artboard-card" id="b4">
-        <div class="artboard-meta">
-          <div style="display:flex; align-items:center; gap:12px;">
-            <span class="artboard-tag">ARTBOARD 04</span>
-            <h2 class="artboard-title">Tactical Telemetry & HUD Terminal</h2>
+    <!-- ============================================================== -->
+    <!-- ARTBOARD 04: TACTICAL SATELLITE MGRS TERMINAL                  -->
+    <!-- ============================================================== -->
+    <div class="board-container theme-4" id="board-4">
+      <div class="web-frame">
+        <div class="web-titlebar">
+          <div class="browser-dots">
+            <span class="b-dot" style="border-radius:0;"></span><span class="b-dot" style="border-radius:0;"></span><span class="b-dot" style="border-radius:0;"></span>
           </div>
-          <div class="artboard-params">
-            <span>INTERFACE: BRACKETED HUD OVERLAYS</span>
-            <span>MATRIX: 32PX SCAN GRIDS</span>
-            <span>BEACON: RETICLE CROSSHAIR</span>
-          </div>
+          <div>MGRS_TERMINAL // CAIRN_BOUNDARY_SURVEY_SYS</div>
+          <div>GRID: 10S // SATELLITE UPLINK: LOCKED</div>
         </div>
-        <div class="artboard-stage">
-          <!-- Sidebar Simulation -->
-          <div class="sim-panel" style="background:#13232C;">
-            <div class="sim-brand-row">
-              <div class="sim-logo" style="font-family:var(--mono); color:var(--sunset);">
-                // CAIRN_TERMINAL
+
+        <div class="web-app-grid">
+          <!-- Sidebar -->
+          <aside class="web-panel">
+            <div class="web-brand">
+              <div class="web-logo">
+                <span>[+] CAIRN_MGRS</span>
               </div>
-              <span class="swatch" style="background:var(--sunset); color:var(--sunset-ink); font-weight:700;">LIVE FEED</span>
+              <span style="font-family:var(--mono); font-size:11px; color:#FFB703;">TACTICAL_V4</span>
             </div>
-            <div style="font-family:var(--mono); font-size:12px; color:#9BB2BE;">SYS_STATUS: SATELLITE_LOCKED</div>
-            <div class="sim-step-heading"><span class="sim-step-num">></span> TARGET_ACQUISITION</div>
-            <div class="sim-input-group">
-              <input type="text" class="sim-text-field" value="Cascade Volcanic Arc" readonly style="border-color:var(--sunset);">
-              <button class="sim-btn-action">LOCK</button>
-            </div>
-            <div style="background:#1B2F3B; border:1px solid #2F5165; padding:10px 12px; border-radius:4px; font-family:var(--mono); font-size:12px; color:var(--topo-ink-soft); display:flex; flex-direction:column; gap:4px;">
-              <div>SAT_SRC: 3DEP_1M_LIDAR</div>
-              <div>SURFACE_AREA: 4,820 SQ KM</div>
-              <div>RADAR_FREQ: 9.4 GHz X-BAND</div>
-            </div>
-            <div class="sim-step-heading" style="margin-top:6px;"><span class="sim-step-num">></span> WAYPOINT_LOG</div>
-            <ul class="sim-stops-list">
-              <li class="sim-stop-item">
-                <span class="sim-stop-idx">01</span>
-                <span class="sim-stop-label">MT RAINIER BASE</span>
-                <span class="sim-stop-badge">4,392M</span>
-              </li>
-              <li class="sim-stop-item">
-                <span class="sim-stop-idx">02</span>
-                <span class="sim-stop-label">DISAPPOINTMENT CLEAVER</span>
-                <span class="sim-stop-badge">3,750M</span>
-              </li>
-            </ul>
-          </div>
+            <p class="web-tagline">Military grid reference boundary acquisition and surveying terminal.</p>
 
-          <!-- Map Simulation -->
-          <div class="sim-map-canvas" style="background:#091217;">
-            <svg class="topo-vector-layer" viewBox="0 0 800 500" fill="none">
-              <path d="M 100 100 Q 300 280, 500 120 T 780 300" stroke="#33566B" stroke-width="1.4"/>
-              <path d="M 80 180 Q 280 340, 520 200 T 760 380" stroke="#FE7F2D" stroke-width="1.8" stroke-dasharray="8 4"/>
-              <path d="M 60 260 Q 260 400, 540 280 T 740 440" stroke="#33566B" stroke-width="1.2"/>
+            <div class="web-step-title"><span class="web-step-idx">></span> TARGET_ACQUISITION</div>
+            <div class="web-search-box">
+              <input type="search" class="web-input" value="Rainier Tactical Zone">
+              <button class="web-btn web-btn-primary">LOCK</button>
+            </div>
+
+            <div class="web-chips">
+              <span class="web-chip active">GRID_ZONES</span>
+              <span class="web-chip">SECTORS</span>
+              <span class="web-chip">WATERSHEDS</span>
+              <span class="web-chip">TOWNSHIPS</span>
+            </div>
+
+            <!-- Tactical Route Table -->
+            <div class="web-route-box">
+              <div style="font-size:12px; font-weight:700; color:#FE7F2D; display:flex; justify-content:space-between;">
+                <span>WAYPOINT_SEQUENCE</span>
+                <span>MGRS_SYNC</span>
+              </div>
+              <ul class="web-stops">
+                <li class="web-stop">
+                  <span class="web-stop-num">01</span>
+                  <span class="web-stop-name">CAMP MUIR BASE</span>
+                  <span class="web-stop-badge">10,080 FT</span>
+                </li>
+                <li class="web-stop">
+                  <span class="web-stop-num">02</span>
+                  <span class="web-stop-name">INGRAHAM GLACIER</span>
+                  <span class="web-stop-badge">11,200 FT</span>
+                </li>
+                <li class="web-stop">
+                  <span class="web-stop-num">03</span>
+                  <span class="web-stop-name">COLUMBIA CREST</span>
+                  <span class="web-stop-badge">14,411 FT</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Telemetry Stats -->
+            <div style="border-left: 3px solid #FE7F2D; padding: 6px 10px; font-family:var(--mono); font-size:11px; color:#8AAAB8;">
+              <div>SAT_FEED: 1M_3DEP_ELEVATION</div>
+              <div>COORDINATE_SYSTEM: MGRS 10T ET 9482 1204</div>
+              <div style="color:#FFB703; margin-top:4px;">STATUS: READY_FOR_MISSION_EXPORT</div>
+            </div>
+
+            <button class="web-btn web-btn-primary" style="margin-top:auto; height:44px;">
+              TRANSMIT KML / GPX TO FIELD
+            </button>
+          </aside>
+
+          <!-- Map Stage -->
+          <main class="web-stage">
+            <svg class="web-map-svg" viewBox="0 0 1000 780" fill="none">
+              <!-- Tactical Grid Lines -->
+              <line x1="100" y1="0" x2="100" y2="780" stroke="#12232E" stroke-width="1"/>
+              <line x1="300" y1="0" x2="300" y2="780" stroke="#12232E" stroke-width="1"/>
+              <line x1="500" y1="0" x2="500" y2="780" stroke="#12232E" stroke-width="1"/>
+              <line x1="700" y1="0" x2="700" y2="780" stroke="#12232E" stroke-width="1"/>
+              <line x1="900" y1="0" x2="900" y2="780" stroke="#12232E" stroke-width="1"/>
+              <line x1="0" y1="180" x2="1000" y2="180" stroke="#12232E" stroke-width="1"/>
+              <line x1="0" y1="380" x2="1000" y2="380" stroke="#12232E" stroke-width="1"/>
+              <line x1="0" y1="580" x2="1000" y2="580" stroke="#12232E" stroke-width="1"/>
+              <!-- Topo Contours -->
+              <path d="M 200 240 Q 500 480, 800 280" stroke="#233D4D" stroke-width="2"/>
+              <path d="M 220 320 Q 520 540, 820 360" stroke="#FE7F2D" stroke-width="2" stroke-dasharray="6 4"/>
             </svg>
 
-            <!-- Tactical Corner Reticle Frame -->
+            <!-- Tactical Corner Brackets -->
             <div class="corner-bracket c-top-left" style="width:24px; height:24px; border-width:3px 0 0 3px;"></div>
             <div class="corner-bracket c-top-right" style="width:24px; height:24px; border-width:3px 3px 0 0;"></div>
             <div class="corner-bracket c-bot-left" style="width:24px; height:24px; border-width:0 0 3px 3px;"></div>
             <div class="corner-bracket c-bot-right" style="width:24px; height:24px; border-width:0 3px 3px 0;"></div>
 
-            <!-- Pixel Crosshair Beacon -->
-            <div class="map-pin-anchor" style="top: 45%; left: 48%;">
-              <svg class="pixel-svg" width="28" height="28" viewBox="0 0 14 14">
+            <!-- Mode Bar -->
+            <div class="web-modebar">
+              <button class="web-modebar-btn active">TARGET_LOCK</button>
+              <button class="web-modebar-btn">SURVEY_GRID</button>
+            </div>
+
+            <!-- Pixel Reticle Crosshair Beacon -->
+            <div class="web-beacon" style="top: 48%; left: 54%;">
+              <svg width="32" height="32" viewBox="0 0 14 14" class="pixel-svg-icon">
                 <rect x="5" y="0" width="4" height="14" fill="#FE7F2D"/>
                 <rect x="0" y="5" width="14" height="4" fill="#FE7F2D"/>
-                <rect x="5" y="5" width="4" height="4" fill="#0B1419"/>
+                <rect x="5" y="5" width="4" height="4" fill="#080F14"/>
               </svg>
-              <div class="map-pin-pill" style="border-radius:0; border-color:var(--sunset);">
-                TARGET_LOCKED // RAINIER
-              </div>
+              <span class="beacon-pill-tag">TARGET // COLUMBIA CREST 14,411'</span>
             </div>
 
-            <!-- Floating Telemetry Readout -->
-            <div class="sim-popup-box" style="bottom: 24px; right: 24px; border-radius:0;">
-              <div class="sim-popup-title" style="font-family:var(--mono); color:var(--sunset);">[ BOUNDARY TELEMETRY ]</div>
-              <div class="sim-popup-sub">PERIMETER: 142.8 KM<br>MAX ELEV: 4,392M MSL</div>
-              <button class="sim-popup-btn" style="border-radius:0;">TRANSMIT TO GPS</button>
+            <!-- HUD Badges -->
+            <div class="web-hud-top">
+              <div class="web-hud-pill">MGRS: <strong>10T ET 9482 1204</strong></div>
+              <div class="web-hud-pill">ELEVATION: <strong>4,392M MSL</strong></div>
+              <div class="web-hud-pill">SATELLITE: <strong>LANDSAT-9</strong></div>
             </div>
-
-            <!-- HUD Overlay -->
-            <div class="hud-layer">
-              <div class="hud-header">
-                <div class="hud-badge" style="border-radius:0;">SENSOR: PULSE DOPPLER</div>
-                <div class="hud-badge" style="border-radius:0;">FPS: 60.0 // LATENCY: 12ms</div>
-              </div>
-              <div class="hud-footer">
-                <div class="hud-badge" style="border-radius:0;">SYS_TIME: 2026-10-17T22:04Z</div>
-                <div class="hud-badge" style="border-radius:0;">REFERENCE: NAD83</div>
-              </div>
-            </div>
-          </div>
+          </main>
         </div>
-        <div class="artboard-explainer">
-          <div class="explainer-left">
-            <h3>Visual Thesis: Tactical Recon & Space Telemetry Terminal</h3>
-            <p>
-              High-readability field survey terminal. Uses sharp right-angled brackets, pixel crosshairs, and live coordinate readouts. Sunset Orange serves as the target-lock indicator against the dark Adventure matrix.
-            </p>
-          </div>
-          <div class="explainer-right">
-            <span><strong>Reticle:</strong> Tactical Brackets [ ]</span>
-            <span><strong>Markers:</strong> Pixel Crosshair Reticle</span>
-            <span><strong>Accent:</strong> #FE7F2D Alert Orange</span>
-            <span><strong>Vibe:</strong> High-Tech Mission Control</span>
-          </div>
-        </div>
-      </article>
+      </div>
+    </div>
 
-      <!-- ================= ARTBOARD 5 ================= -->
-      <article class="artboard-card" id="b5">
-        <div class="artboard-meta">
-          <div style="display:flex; align-items:center; gap:12px;">
-            <span class="artboard-tag">ARTBOARD 05</span>
-            <h2 class="artboard-title">Luminescent Topo-Sonar (Nocturne Mode)</h2>
+    <!-- ============================================================== -->
+    <!-- ARTBOARD 05: WARM TOPOGRAPHIC DUSK (CANYON & SUNSET)           -->
+    <!-- ============================================================== -->
+    <div class="board-container theme-5" id="board-5">
+      <div class="web-frame">
+        <div class="web-titlebar">
+          <div class="browser-dots">
+            <span class="b-dot"></span><span class="b-dot"></span><span class="b-dot"></span>
           </div>
-          <div class="artboard-params">
-            <span>EFFECT: 360° SWEEP ILLUMINATION</span>
-            <span>HIGHLIGHT: VIBRANT ORANGE CONTOURS</span>
-            <span>BEACON: STEPPED PIXEL PIN</span>
-          </div>
+          <div>cairn.earth // canyon-dusk-topography-edition</div>
+          <div>CANYON ELEVATION RANGE: 3,200' – 8,800' MSL</div>
         </div>
-        <div class="artboard-stage">
-          <!-- Sidebar Simulation -->
-          <div class="sim-panel" style="background:#162732;">
-            <div class="sim-brand-row">
-              <div class="sim-logo">
-                <span class="pip"></span> CAIRN // NOCTURNE
+
+        <div class="web-app-grid">
+          <!-- Sidebar -->
+          <aside class="web-panel">
+            <div class="web-brand">
+              <div class="web-logo">
+                <svg width="24" height="24" viewBox="0 0 14 14" class="pixel-svg-icon">
+                  <rect x="3" y="0" width="8" height="2" fill="#FE7F2D"/>
+                  <rect x="1" y="2" width="12" height="6" fill="#FE7F2D"/>
+                  <rect x="3" y="8" width="8" height="2" fill="#FE7F2D"/>
+                  <rect x="5" y="10" width="4" height="2" fill="#FE7F2D"/>
+                  <rect x="6" y="12" width="2" height="2" fill="#FE7F2D"/>
+                  <rect x="5" y="4" width="4" height="2" fill="#14171C"/>
+                </svg>
+                <span>Cairn</span>
               </div>
-              <span class="swatch" style="border-color:var(--sunset); color:var(--sunset);">RADAR ACTIVE</span>
+              <button class="web-ctrl-btn">☀️</button>
             </div>
-            <p class="sim-lead">Bioluminescent nocturnal boundary charting.</p>
-            <div class="sim-step-heading"><span class="sim-step-num">1</span> RADAR TARGET</div>
-            <div class="sim-input-group">
-              <input type="text" class="sim-text-field" value="Yellowstone Caldera" readonly>
-              <button class="sim-btn-action">SWEEP</button>
-            </div>
-            <div class="sim-chips-list">
-              <span class="sim-filter-chip active">Geothermal Zones</span>
-              <span class="sim-filter-chip">Caldera Rim</span>
-              <span class="sim-filter-chip">River Basins</span>
-            </div>
-            <div class="sim-step-heading" style="margin-top:6px;"><span class="sim-step-num">2</span> DETECTED STOPS</div>
-            <ul class="sim-stops-list">
-              <li class="sim-stop-item">
-                <span class="sim-stop-idx">1</span>
-                <span class="sim-stop-label">Old Faithful Geyser</span>
-                <span class="sim-stop-badge" style="color:var(--sunset);">ACTIVE</span>
-              </li>
-              <li class="sim-stop-item">
-                <span class="sim-stop-idx">2</span>
-                <span class="sim-stop-label">Grand Prismatic Spring</span>
-                <span class="sim-stop-badge">THERMAL</span>
-              </li>
-            </ul>
-          </div>
+            <p class="web-tagline">Warm canyon dusk elevation and public lands boundary navigation.</p>
 
-          <!-- Map Simulation -->
-          <div class="sim-map-canvas" style="background:#091116;">
-            <svg class="topo-vector-layer" viewBox="0 0 800 500" fill="none">
-              <circle cx="450" cy="250" r="180" stroke="#1F3949" stroke-width="1.2"/>
-              <circle cx="450" cy="250" r="130" stroke="#2B4D63" stroke-width="1.6"/>
-              <circle cx="450" cy="250" r="85" stroke="#FE7F2D" stroke-width="2"/>
-              <circle cx="450" cy="250" r="45" stroke="#2B4D63" stroke-width="1.2"/>
-              <circle cx="450" cy="250" r="15" stroke="#FE7F2D" stroke-width="2"/>
+            <div class="web-step-title"><span class="web-step-idx">1</span> Explore Boundaries</div>
+            <div class="web-search-box">
+              <input type="search" class="web-input" value="Zion National Park, UT">
+              <button class="web-btn web-btn-primary">Search</button>
+            </div>
+
+            <div class="web-chips">
+              <span class="web-chip active">National Parks</span>
+              <span class="web-chip">Canyon Rim</span>
+              <span class="web-chip">State Parks</span>
+              <span class="web-chip">BLM Lands</span>
+            </div>
+
+            <!-- Route Builder -->
+            <div class="web-route-box">
+              <div style="font-size:13px; font-weight:700; color:#FAF5F0; display:flex; justify-content:space-between;">
+                <span>Canyon Route</span>
+                <span style="font-family:var(--mono); color:#FE7F2D;">14.2 MILES</span>
+              </div>
+              <div class="web-modes-row">
+                <span class="web-mode-pill active">Drive</span>
+                <span class="web-mode-pill">Shuttle</span>
+                <span class="web-mode-pill">Hike</span>
+              </div>
+              <ul class="web-stops">
+                <li class="web-stop">
+                  <span class="web-stop-num">1</span>
+                  <span class="web-stop-name">Zion Canyon Visitor Center</span>
+                  <span class="web-stop-badge">3,980 FT</span>
+                </li>
+                <li class="web-stop">
+                  <span class="web-stop-num">2</span>
+                  <span class="web-stop-name">Angels Landing Scout Lookout</span>
+                  <span class="web-stop-badge">5,350 FT</span>
+                </li>
+                <li class="web-stop">
+                  <span class="web-stop-num">3</span>
+                  <span class="web-stop-name">The Narrows Temple Gateway</span>
+                  <span class="web-stop-badge">4,410 FT</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Download Box -->
+            <div class="web-step-title"><span class="web-step-idx">2</span> Export</div>
+            <div class="web-download-row">
+              <div class="web-fmt-card active">
+                <input type="radio" checked name="fmt5">
+                <div><strong>KML</strong><br><span style="color:#A5B4C0; font-size:11px;">Google Earth</span></div>
+              </div>
+              <div class="web-fmt-card">
+                <input type="radio" name="fmt5">
+                <div><strong>GPX</strong><br><span style="color:#A5B4C0; font-size:11px;">Handheld GPS</span></div>
+              </div>
+            </div>
+
+            <button class="web-btn web-btn-primary" style="margin-top:auto; height:44px;">
+              Download Boundary (192 KB)
+            </button>
+          </aside>
+
+          <!-- Map Stage -->
+          <main class="web-stage">
+            <svg class="web-map-svg" viewBox="0 0 1000 780" fill="none">
+              <!-- Canyon Topo Vector Curves -->
+              <path d="M 120 180 C 340 100, 520 310, 720 220 C 880 160, 940 120, 1020 180" stroke="#344350" stroke-width="1.6"/>
+              <path d="M 100 280 C 320 200, 500 420, 700 320 C 860 260, 920 220, 1000 280" stroke="#FE7F2D" stroke-width="2"/>
+              <path d="M 80 380 C 300 300, 480 520, 680 420 C 840 360, 900 320, 980 380" stroke="#F4A261" stroke-width="1.4"/>
+              <path d="M 60 480 C 280 400, 460 620, 660 520 C 820 460, 880 420, 960 480" stroke="#344350" stroke-width="1.2"/>
+              <!-- River Gorge corridor -->
+              <path d="M 380 720 Q 540 450, 640 280 T 820 80" stroke="#233D4D" stroke-width="4"/>
             </svg>
 
-            <!-- Sonar Sweep Layer -->
-            <div class="radar-beam" style="width:540px; height:540px; margin-top:-270px; margin-left:-270px; animation-duration:5.5s;"></div>
+            <!-- Mode Bar -->
+            <div class="web-modebar">
+              <button class="web-modebar-btn active">Inspect Boundary</button>
+              <button class="web-modebar-btn">Canyon Topo</button>
+            </div>
 
-            <!-- Stepped Pixel Waypoint Pin -->
-            <div class="map-pin-anchor" style="top: 50%; left: 56%;">
-              <div class="pulse-echo" style="width:70px; height:70px;"></div>
-              <svg class="pixel-svg" width="28" height="28" viewBox="0 0 14 14">
+            <!-- Stepped Waypoint Pin on Angels Landing -->
+            <div class="web-beacon" style="top: 42%; left: 62%;">
+              <svg width="32" height="32" viewBox="0 0 14 14" class="pixel-svg-icon">
                 <rect x="3" y="0" width="8" height="2" fill="#FE7F2D"/>
                 <rect x="1" y="2" width="12" height="6" fill="#FE7F2D"/>
                 <rect x="3" y="8" width="8" height="2" fill="#FE7F2D"/>
                 <rect x="5" y="10" width="4" height="2" fill="#FE7F2D"/>
                 <rect x="6" y="12" width="2" height="2" fill="#FE7F2D"/>
-                <rect x="5" y="4" width="4" height="2" fill="#0B1419"/>
+                <rect x="5" y="4" width="4" height="2" fill="#14171C"/>
               </svg>
-              <div class="map-pin-pill">
-                CALDERA CENTER // 2,357M
-              </div>
+              <span class="beacon-pill-tag">ANGELS LANDING // 5,790 FT</span>
             </div>
 
-            <!-- HUD Overlay -->
-            <div class="hud-layer">
-              <div class="hud-header">
-                <div class="hud-badge"><strong style="color:var(--sunset)">SWEEP BEAM:</strong> 360° ACTIVE</div>
-                <div class="hud-badge">ECHO INTENSITY: 98.4%</div>
-              </div>
-              <div class="hud-footer">
-                <div class="hud-badge">NOCTURNE NIGHT PASS</div>
-                <div class="hud-badge">LUMINESCENT TOPO-MATRIX</div>
-              </div>
+            <!-- HUD Badges -->
+            <div class="web-hud-top">
+              <div class="web-hud-pill">GORGE DEPTH: <strong>2,500 FT</strong></div>
+              <div class="web-hud-pill">DATUM: <strong>NAD83</strong></div>
+              <div class="web-hud-pill">VIRGIN RIVER BASIN</div>
             </div>
-          </div>
+          </main>
         </div>
-        <div class="artboard-explainer">
-          <div class="explainer-left">
-            <h3>Visual Thesis: Nocturnal Sonar Sweep & Contour Illumination</h3>
-            <p>
-              Deepest nocturnal contrast (#091116) where an active radar sweep illuminates vector elevation contours in bright Sunset Orange (#FE7F2D). The stepped pixel pin provides immediate geospatial recognition.
-            </p>
-          </div>
-          <div class="explainer-right">
-            <span><strong>Nocturne Canvas:</strong> #091116 Deep Void</span>
-            <span><strong>Sweep Speed:</strong> 5.5s / 360°</span>
-            <span><strong>Marker:</strong> Stepped Waypoint Pin</span>
-            <span><strong>Vibe:</strong> Night Operations</span>
-          </div>
-        </div>
-      </article>
-
-    </section>
-
-    <!-- Selection & Feedback -->
-    <section class="decision-footer">
-      <h2>Which Artboard Direction Do You Prefer?</h2>
-      <p>
-        You can choose one as the primary direction, combine elements across boards (e.g. Artboard 1’s bathymetric rings + Artboard 2’s elevation indices + Marker B’s pixel cairn stack), or give any specific adjustments.
-      </p>
-      <div class="choice-pills">
-        <button class="choice-pill" onclick="alert('Direction selected: 01 Deep Sonar. Let me know in chat if you would like this applied to the live app!')">01: Bathymetric Deep Sonar</button>
-        <button class="choice-pill" onclick="alert('Direction selected: 02 Alpine Topo. Let me know in chat if you would like this applied to the live app!')">02: Alpine Topo Recon</button>
-        <button class="choice-pill" onclick="alert('Direction selected: 03 Minimal Vector. Let me know in chat if you would like this applied to the live app!')">03: Minimal Vector Radar</button>
-        <button class="choice-pill" onclick="alert('Direction selected: 04 Tactical HUD. Let me know in chat if you would like this applied to the live app!')">04: Tactical Telemetry HUD</button>
-        <button class="choice-pill" onclick="alert('Direction selected: 05 Luminescent Nocturne. Let me know in chat if you would like this applied to the live app!')">05: Luminescent Nocturne</button>
       </div>
-    </section>
+    </div>
+
   </main>
 
+  <script>
+    const boardMeta = {
+      'board-1': {
+        title: 'Artboard 01 — Deep Sea Sonar & Bathymetry',
+        desc: 'Hydrographic surveillance aesthetic with deep oceanic abyss navy, concentric radar range rings, and radiating Sunset Orange pixel markers.',
+        swatches: [
+          { name: 'Sunset #FE7F2D', color: '#FE7F2D' },
+          { name: 'Adventure #233D4D', color: '#233D4D' },
+          { name: 'Abyss Canvas #121F27', color: '#121F27' },
+          { name: 'Sonar Cyan #2EE6A8', color: '#2EE6A8' }
+        ]
+      },
+      'board-2': {
+        title: 'Artboard 02 — Alpine Topo Recon (USGS Vector Field)',
+        desc: 'Highland mountain expedition interface with dense vector elevation contours (40ft interval), elevation profiles, and pixel cairn stack markers.',
+        swatches: [
+          { name: 'Summit Orange #FE7F2D', color: '#FE7F2D' },
+          { name: 'Basalt #1A2832', color: '#1A2832' },
+          { name: 'Adventure #233D4D', color: '#233D4D' },
+          { name: 'Lichen Clay #E29578', color: '#E29578' }
+        ]
+      },
+      'board-3': {
+        title: 'Artboard 03 — Minimalist Aero Radar (Swiss Instrument)',
+        desc: 'Modern air-traffic dispatch aesthetic with razor-sharp 1px dividers, airspace sector rings, and minimal 10px orange pixel beacon pins.',
+        swatches: [
+          { name: 'Runway Orange #FE7F2D', color: '#FE7F2D' },
+          { name: 'Console Slate #16222B', color: '#16222B' },
+          { name: 'Marine #233D4D', color: '#233D4D' },
+          { name: 'Flight Cyan #48CAE4', color: '#48CAE4' }
+        ]
+      },
+      'board-4': {
+        title: 'Artboard 04 — Tactical Satellite MGRS Terminal',
+        desc: 'Military grid reference survey terminal with sharp corner brackets, 50px UTM coordinate matrix, and pixel crosshair reticle target markers.',
+        swatches: [
+          { name: 'Target Orange #FE7F2D', color: '#FE7F2D' },
+          { name: 'Armored #101B22', color: '#101B22' },
+          { name: 'Adventure #233D4D', color: '#233D4D' },
+          { name: 'Caution Amber #FFB703', color: '#FFB703' }
+        ]
+      },
+      'board-5': {
+        title: 'Artboard 05 — Warm Topographic Dusk (Canyon & Sunset)',
+        desc: 'Modern outdoor adventure editorial aesthetic pairing brilliant Sunset Orange curves over deep canyon shadow slate and terracotta accents.',
+        swatches: [
+          { name: 'Sunset Flare #FE7F2D', color: '#FE7F2D' },
+          { name: 'Canyon Slate #1C232B', color: '#1C232B' },
+          { name: 'Adventure #233D4D', color: '#233D4D' },
+          { name: 'Warm Terracotta #F4A261', color: '#F4A261' }
+        ]
+      },
+      'compare': {
+        title: 'Split Comparison View — All 5 Artboards Side-by-Side',
+        desc: 'Side-by-side comparative layout to inspect all 5 design systems, typography styles, and pixel marker variants simultaneously.',
+        swatches: [
+          { name: 'Sunset Core #FE7F2D', color: '#FE7F2D' },
+          { name: 'Adventure Core #233D4D', color: '#233D4D' }
+        ]
+      }
+    };
+
+    function switchBoard(id) {
+      document.querySelectorAll('.studio-tab-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = Array.from(document.querySelectorAll('.studio-tab-btn')).find(b => b.getAttribute('onclick')?.includes(id));
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const stage = document.getElementById('main-stage');
+      if (id === 'compare') {
+        stage.classList.add('compare-grid-mode');
+        document.querySelectorAll('.board-container').forEach(b => b.classList.add('active'));
+      } else {
+        stage.classList.remove('compare-grid-mode');
+        document.querySelectorAll('.board-container').forEach(b => b.classList.remove('active'));
+        document.getElementById(id)?.classList.add('active');
+      }
+
+      const meta = boardMeta[id];
+      if (meta) {
+        document.getElementById('board-heading').textContent = meta.title;
+        document.getElementById('board-desc').textContent = meta.desc;
+        const swatchesEl = document.getElementById('swatches-display');
+        swatchesEl.innerHTML = meta.swatches.map(s => `
+          <div class="swatch-tag">
+            <span class="swatch-pip" style="background:${s.color};"></span>
+            ${s.name}
+          </div>
+        `).join('');
+      }
+    }
+
+    function setScale(scale) {
+      document.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('active'));
+      const activeBtn = Array.from(document.querySelectorAll('.scale-btn')).find(b => b.textContent.includes(Math.round(scale*100)+'%'));
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const stage = document.getElementById('main-stage');
+      stage.style.transform = scale === 1 ? 'none' : `scale(${scale})`;
+      stage.style.transformOrigin = 'top center';
+    }
+  </script>
 </body>
 </html>
