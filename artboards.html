@@ -970,7 +970,7 @@
       <!-- ========================================================= -->
       <!-- ARTBOARD 01: CUPERTINO HUMAN INTERFACE -->
       <!-- ========================================================= -->
-      <div class="artboard-container theme-apple" id="board-1">
+      <div class="artboard-container theme-apple active" id="board-1">
         <div class="web-frame">
           <div class="web-titlebar">
             <div class="browser-dots">
@@ -2591,7 +2591,288 @@
   </main>
 
   <script>
-    const boards = [{"id": "board-1", "num": "01", "theme": "theme-apple", "title": "Cupertino Human Interface", "subtitle": "Apple System / VisionOS Glassmorphism", "logo_svg": "<svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9" fill="none" stroke="#0071E3" stroke-width="2"/><circle cx="10" cy="10" r="4" fill="#0071E3"/></svg>", "marker_svg": "<svg width="34" height="34" viewBox="0 0 34 34"><circle cx="17" cy="17" r="16" fill="rgba(0,113,227,0.15)" stroke="#0071E3" stroke-width="2"/><circle cx="17" cy="17" r="6" fill="#0071E3"/><circle cx="17" cy="17" r="2" fill="#FFF"/></svg>", "marker_label": "HURRICANE RIDGE // 5,242 FT", "draper": "Technology is at its best when it disappears. Cairn isn"t software you fight with; it"s a pane of crystal glass held up to the American wild. It makes the user feel intelligent, capable, and unhurried.", "mizko": "Fitts"s law dialed to perfection. Massive click targets hidden inside airy padding. The map canvas dominates 70% of the viewport while the 3-step boundary workflow stays anchored without visual friction.", "marker_desc": "Frosted Sapphire Disc with concentric glass pulse", "swatches": [("#0071E3", "System Blue"), ("#F5F5F7", "Cupertino Light"), ("#1D1D1F", "Onyx Type"), ("#D2D2D7", "Hairline")]}, {"id": "board-2", "num": "02", "theme": "theme-linear", "title": "Linear Obsidian", "subtitle": "Modern High-Velocity Tool Craft", "logo_svg": "<svg width="20" height="20" viewBox="0 0 20 20"><polygon points="10,2 18,17 2,17" fill="none" stroke="#5E6AD2" stroke-width="2"/><line x1="10" y1="2" x2="10" y2="17" stroke="#5E6AD2" stroke-width="2"/></svg>", "marker_svg": "<svg width="32" height="32" viewBox="0 0 32 32"><rect x="13" y="2" width="6" height="28" fill="#5E6AD2"/><rect x="2" y="13" width="28" height="6" fill="#5E6AD2"/><rect x="11" y="11" width="10" height="10" fill="#08090A" stroke="#8C99F7" stroke-width="2"/></svg>", "marker_label": "TARGET // 47.9691° N, 123.4986° W", "draper": "People don"t want a map tool that acts like a tourist brochure. Trail runners, scouts, GIS pros—they want speed. When you press a button, it answers at the speed of thought.", "mizko": "Visual hierarchy 10/10. High density without clutter. Notice how the dark canvas makes the boundary lines pop off the screen with zero chromatic bleed.", "marker_desc": "Electric Violet Reticle with 4-way precision crosshairs", "swatches": [("#5E6AD2", "Linear Violet"), ("#08090A", "Obsidian"), ("#8C99F7", "Neon Accent"), ("#222429", "Hairline")]}, {"id": "board-3", "num": "03", "theme": "theme-nps", "title": "NPS Unigrid Heritage", "subtitle": "Massimo Vignelli 1977 Field Guide", "logo_svg": "<svg width="22" height="22" viewBox="0 0 22 22"><polygon points="11,2 20,8 17,20 5,20 2,8" fill="#1C3F2B"/><polygon points="11,6 16,16 6,16" fill="#BC4749"/></svg>", "marker_svg": "<svg width="34" height="34" viewBox="0 0 34 34"><rect x="10" y="2" width="14" height="5" fill="#BC4749"/><rect x="6" y="8" width="22" height="7" fill="#BC4749"/><rect x="3" y="16" width="28" height="9" fill="#1C3F2B"/><polygon points="17,26 13,32 21,32" fill="#000"/></svg>", "marker_label": "NPS RANGER STATION // OLYMPIC NP", "draper": "Nostalgia is delicate, but potent. It isn"t just about downloading a polygon; it’s the smell of cedar woodsmoke and damp earth on a trail at dawn. You aren"t opening software—you’re unfurling a field guide.", "mizko": "Instantly commands authority. Users immediately trust government map data when it’s framed with the typographic precision of the National Park Service.", "marker_desc": "Linocut Stacked Stone Cairn in Forest Evergreen & Terracotta", "swatches": [("#1C3F2B", "Forest Green"), ("#F8F5EE", "Parchment"), ("#BC4749", "Canyon Clay"), ("#000000", "Vignelli Black")]}, {"id": "board-4", "num": "04", "theme": "theme-editorial", "title": "Scandinavian Kinfolk", "subtitle": "Swiss Editorial & Typographic Restraint", "logo_svg": "<svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" fill="none" stroke="#22201D" stroke-width="1.2"/><circle cx="10" cy="10" r="2" fill="#22201D"/></svg>", "marker_svg": "<svg width="30" height="30" viewBox="0 0 30 30"><circle cx="15" cy="15" r="13" fill="none" stroke="#22201D" stroke-width="1.2"/><circle cx="15" cy="15" r="3.5" fill="#22201D"/></svg>", "marker_label": "station 01 · rain forest", "draper": "Luxury is what you take away. When everyone else is cramming buttons and banners onto the screen, Cairn gives you silence. It tells the user: you are a person of taste.", "mizko": "The typographic scale does all the heavy lifting. Extreme contrast between elegant serif headings and micro sans metadata reduces visual fatigue to zero.", "marker_desc": "Architectural Hairline Ring with Solitary Obsidian Core", "swatches": [("#22201D", "Sumi Ink"), ("#FBF9F5", "Warm Limestone"), ("#7A7469", "Soft Taupe"), ("#E2DDD5", "0.5px Divider")]}, {"id": "board-5", "num": "05", "theme": "theme-adventure", "title": "Sunset & Adventure", "subtitle": "Premium Outdoor Tech (Arc"teryx / AllTrails)", "logo_svg": "<svg width="22" height="22" viewBox="0 0 22 22"><polygon points="11,2 21,19 1,19" fill="#233D4D"/><polygon points="11,2 17,19 5,19" fill="#FE7F2D"/></svg>", "marker_svg": "<svg width="34" height="34" viewBox="0 0 34 34"><rect x="0" y="0" width="34" height="34" fill="rgba(254,127,45,0.18)"/><rect x="6" y="6" width="22" height="22" fill="#233D4D"/><rect x="11" y="11" width="12" height="12" fill="#FE7F2D"/><rect x="14" y="14" width="6" height="6" fill="#FFF"/></svg>", "marker_label": "WAYPOINT // 5,242 FT ELEV", "draper": "Golden hour in the Cascades. That 20-minute window where the sky catches fire and you realize why you left the city. This color palette is that exact memory.", "mizko": "Color contrast is surgical. #FE7F2D Sunset against deep #233D4D navy draws the eye straight to primary user actions and active trail stops.", "marker_desc": "Radiant Pixel Beacon with concentric raster steps", "swatches": [("#FE7F2D", "Sunset Core"), ("#233D4D", "Adventure Deep"), ("#152530", "Panel Canvas"), ("#0A141A", "Abyss Map")]}, {"id": "board-6", "num": "06", "theme": "theme-bloomberg", "title": "Bloomberg Terminal", "subtitle": "Phosphor Cyberdeck & GIS Telemetry", "logo_svg": "<svg width="22" height="22" viewBox="0 0 22 22"><rect x="2" y="2" width="18" height="18" fill="none" stroke="#FF9E00" stroke-width="1.5"/><line x1="2" y1="11" x2="20" y2="11" stroke="#FF9E00"/><line x1="11" y1="2" x2="11" y2="20" stroke="#FF9E00"/></svg>", "marker_svg": "<svg width="32" height="32" viewBox="0 0 32 32"><rect x="0" y="0" width="32" height="32" fill="#000" stroke="#FF9E00" stroke-width="1"/><rect x="6" y="6" width="20" height="20" fill="none" stroke="#00FF66" stroke-width="1" stroke-dasharray="2 2"/><rect x="13" y="13" width="6" height="6" fill="#FF9E00"/></svg>", "marker_label": "LOC // 47.9691°N 123.4986°W", "draper": "This isn"t made for the casual stroller. This is for the person who commands telemetry. It tells the operator: you are in control of the machine.", "mizko": "Maximum information density per square inch. Tabular numbers and monospaced alignment eliminate ambiguity for GIS professionals and field surveyors.", "marker_desc": "Amber Phosphor Matrix with Green Coordinate Grid", "swatches": [("#FF9E00", "Amber Phosphor"), ("#00FF66", "Telemetry Green"), ("#050607", "Matrix Void"), ("#1A1200", "Tabular Grid")]}, {"id": "board-7", "num": "07", "theme": "theme-te", "title": "Teenage Engineering / Braun", "subtitle": "Dieter Rams Tactile Hardware Aesthetic", "logo_svg": "<svg width="22" height="22" viewBox="0 0 22 22"><rect x="2" y="2" width="18" height="18" rx="2" fill="#FFF" stroke="#222" stroke-width="2"/><circle cx="11" cy="11" r="4" fill="#FF4400"/></svg>", "marker_svg": "<svg width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="#E5E5E2" stroke="#222" stroke-width="2"/><circle cx="16" cy="16" r="8" fill="#FF4400" stroke="#222" stroke-width="1.5"/><circle cx="16" cy="16" r="3" fill="#FFF"/></svg>", "marker_label": "PT-01 // 5,242 FT", "draper": "We forgot what it feels like to hold a well-made physical tool. What if software felt like a piece of German hardware you want to keep on your desk forever?", "mizko": "Delightful physical affordances. Raised buttons, rotary toggles, and segmented card bays give software the tactile satisfaction of an analog synthesizer.", "marker_desc": "Machined Hardware Push-Pin in Safety Orange & Dieter Gray", "swatches": [("#FF4400", "Safety Orange"), ("#E5E5E2", "Matte Pebble"), ("#FFD000", "Rotary Yellow"), ("#222220", "Hardware Body")]}, {"id": "board-8", "num": "08", "theme": "theme-brutalist", "title": "Neo-Brutalist Gumroad", "subtitle": "Figma Bold / High-Contrast Pop", "logo_svg": "<svg width="22" height="22" viewBox="0 0 22 22"><rect x="3" y="3" width="16" height="16" rx="3" fill="#FFE600" stroke="#000" stroke-width="2.5"/><path d="M7 15 L11 7 L15 15 Z" fill="#FF5A5F" stroke="#000" stroke-width="1.5"/></svg>", "marker_svg": "<svg width="36" height="36" viewBox="0 0 36 36"><path d="M18 2 L22 12 L33 13 L24 20 L27 31 L18 25 L9 31 L12 20 L3 13 L14 12 Z" fill="#FFE600" stroke="#000" stroke-width="2.5"/><circle cx="18" cy="18" r="4" fill="#FF5A5F" stroke="#000" stroke-width="1.5"/></svg>", "marker_label": "STOP #1 🔥 HURRICANE RIDGE", "draper": "Mapping doesn"t have to be serious, boring, and dusty. Make it fun. Make it pop. Make someone smile while they"re planning a trek to Yosemite.", "mizko": "Zero ambiguity. The thick 3px black strokes and hard 4px drop-shadows create an unmissable visual hierarchy where no user ever wonders what to click next.", "marker_desc": "Chunky Pop-Art Starburst Pin with 2.5px Hard Shadow", "swatches": [("#FFE600", "Canary Pop"), ("#FF5A5F", "Electric Coral"), ("#4D96FF", "Cobalt Sky"), ("#000000", "Solid Ink")]}, {"id": "board-9", "num": "09", "theme": "theme-cyber", "title": "Night City Cyberpunk", "subtitle": "Neon Recon & Orbital Satellite HUD", "logo_svg": "<svg width="22" height="22" viewBox="0 0 22 22"><polygon points="11,2 20,19 2,19" fill="none" stroke="#00F5D4" stroke-width="2"/><circle cx="11" cy="13" r="3" fill="#FF007F"/></svg>", "marker_svg": "<svg width="34" height="34" viewBox="0 0 34 34"><rect x="2" y="2" width="30" height="30" fill="none" stroke="#00F5D4" stroke-width="1.5"/><rect x="8" y="8" width="18" height="18" fill="none" stroke="#FF007F" stroke-width="1.5"/><circle cx="17" cy="17" r="4" fill="#00F5D4"/></svg>", "marker_label": "ORBITAL SCAN // ZONE 10T", "draper": "It’s 2049. You’re scanning public land boundaries from an orbital satellite recon hub. It’s intoxicating, rebellious, and unapologetically futuristic.", "mizko": "Immersion through chromatic glow. High-contrast neon cyan and magenta boundaries against pitch obsidian make spatial geometry look like live energy grids.", "marker_desc": "Holographic Dual-Ring Targeting Reticle in Neon Cyan/Magenta", "swatches": [("#00F5D4", "Neon Cyan"), ("#FF007F", "Hot Magenta"), ("#0A0A12", "Obsidian Void"), ("#262640", "Sub-grid")]}, {"id": "board-10", "num": "10", "theme": "theme-zen", "title": "Japanese Zen (Wabi-Sabi)", "subtitle": "Handcrafted Washi Paper & Stone Cairn", "logo_svg": "<svg width="22" height="22" viewBox="0 0 22 22"><circle cx="11" cy="11" r="8" fill="none" stroke="#4A634E" stroke-width="1.6" stroke-dasharray="35 5"/><circle cx="11" cy="9" r="2.5" fill="#A8442E"/><ellipse cx="11" cy="14" rx="4.5" ry="2" fill="#2B2A27"/></svg>", "marker_svg": "<svg width="32" height="32" viewBox="0 0 32 32"><ellipse cx="16" cy="22" rx="10" ry="5" fill="#2B2A27"/><ellipse cx="16" cy="15" rx="7" ry="4" fill="#4A634E"/><circle cx="16" cy="9" r="3" fill="#A8442E"/></svg>", "marker_label": "第一地点 · 標高 1,598M", "draper": "A cairn is an ancient stone guide left on a misty path to say: someone walked here before you, and you are not lost. This design brings calm to a noisy world.", "mizko": "Generous negative space (Ma 間) eliminates cognitive overwhelm. The muted earth tones and soft pebble geometry make GIS mapping feel contemplative.", "marker_desc": "Stacked River-Pebble Pebble Stone Cairn in Persimmon & Moss", "swatches": [("#4A634E", "Moss Green"), ("#A8442E", "Dried Persimmon"), ("#F6F3EE", "Washi Paper"), ("#2B2A27", "Sumi Stone")]}];
+    const boards = [
+  {
+    "id": "board-1",
+    "num": "01",
+    "theme": "theme-apple",
+    "title": "Cupertino Human Interface",
+    "subtitle": "Apple System / VisionOS Glassmorphism",
+    "draper": "Technology is at its best when it disappears. Cairn isn't software you fight with; it's a pane of crystal glass held up to the American wild. It makes the user feel intelligent, capable, and unhurried.",
+    "mizko": "Fitts's law dialed to perfection. Massive click targets hidden inside airy padding. The map canvas dominates 70% of the viewport while the 3-step boundary workflow stays anchored without visual friction.",
+    "marker_desc": "Frosted Sapphire Disc with concentric glass pulse",
+    "swatches": [
+      [
+        "#0071E3",
+        "System Blue"
+      ],
+      [
+        "#F5F5F7",
+        "Cupertino Light"
+      ],
+      [
+        "#1D1D1F",
+        "Onyx Type"
+      ],
+      [
+        "#D2D2D7",
+        "Hairline"
+      ]
+    ]
+  },
+  {
+    "id": "board-2",
+    "num": "02",
+    "theme": "theme-linear",
+    "title": "Linear Obsidian",
+    "subtitle": "Modern High-Velocity Tool Craft",
+    "draper": "People don't want a map tool that acts like a tourist brochure. Trail runners, scouts, GIS pros\u2014they want speed. When you press a button, it answers at the speed of thought.",
+    "mizko": "Visual hierarchy 10/10. High density without clutter. Notice how the dark canvas makes the boundary lines pop off the screen with zero chromatic bleed.",
+    "marker_desc": "Electric Violet Reticle with 4-way precision crosshairs",
+    "swatches": [
+      [
+        "#5E6AD2",
+        "Linear Violet"
+      ],
+      [
+        "#08090A",
+        "Obsidian"
+      ],
+      [
+        "#8C99F7",
+        "Neon Accent"
+      ],
+      [
+        "#222429",
+        "Hairline"
+      ]
+    ]
+  },
+  {
+    "id": "board-3",
+    "num": "03",
+    "theme": "theme-nps",
+    "title": "NPS Unigrid Heritage",
+    "subtitle": "Massimo Vignelli 1977 Field Guide",
+    "draper": "Nostalgia is delicate, but potent. It isn't just about downloading a polygon; it\u2019s the smell of cedar woodsmoke and damp earth on a trail at dawn. You aren't opening software\u2014you\u2019re unfurling a field guide.",
+    "mizko": "Instantly commands authority. Users immediately trust government map data when it\u2019s framed with the typographic precision of the National Park Service.",
+    "marker_desc": "Linocut Stacked Stone Cairn in Forest Evergreen & Terracotta",
+    "swatches": [
+      [
+        "#1C3F2B",
+        "Forest Green"
+      ],
+      [
+        "#F8F5EE",
+        "Parchment"
+      ],
+      [
+        "#BC4749",
+        "Canyon Clay"
+      ],
+      [
+        "#000000",
+        "Vignelli Black"
+      ]
+    ]
+  },
+  {
+    "id": "board-4",
+    "num": "04",
+    "theme": "theme-editorial",
+    "title": "Scandinavian Kinfolk",
+    "subtitle": "Swiss Editorial & Typographic Restraint",
+    "draper": "Luxury is what you take away. When everyone else is cramming buttons and banners onto the screen, Cairn gives you silence. It tells the user: you are a person of taste.",
+    "mizko": "The typographic scale does all the heavy lifting. Extreme contrast between elegant serif headings and micro sans metadata reduces visual fatigue to zero.",
+    "marker_desc": "Architectural Hairline Ring with Solitary Obsidian Core",
+    "swatches": [
+      [
+        "#22201D",
+        "Sumi Ink"
+      ],
+      [
+        "#FBF9F5",
+        "Warm Limestone"
+      ],
+      [
+        "#4A453D",
+        "Muted Taupe"
+      ],
+      [
+        "#E2DDD5",
+        "0.5px Divider"
+      ]
+    ]
+  },
+  {
+    "id": "board-5",
+    "num": "05",
+    "theme": "theme-adventure",
+    "title": "Sunset & Adventure",
+    "subtitle": "Premium Outdoor Tech (Arc'teryx / AllTrails)",
+    "draper": "Golden hour in the Cascades. That 20-minute window where the sky catches fire and you realize why you left the city. This color palette is that exact memory.",
+    "mizko": "Color contrast is surgical. #FE7F2D Sunset against deep #233D4D navy draws the eye straight to primary user actions and active trail stops.",
+    "marker_desc": "Radiant Pixel Beacon with concentric raster steps",
+    "swatches": [
+      [
+        "#FE7F2D",
+        "Sunset Core"
+      ],
+      [
+        "#233D4D",
+        "Adventure Deep"
+      ],
+      [
+        "#152530",
+        "Panel Canvas"
+      ],
+      [
+        "#0A141A",
+        "Abyss Map"
+      ]
+    ]
+  },
+  {
+    "id": "board-6",
+    "num": "06",
+    "theme": "theme-bloomberg",
+    "title": "Bloomberg Terminal",
+    "subtitle": "Phosphor Cyberdeck & GIS Telemetry",
+    "draper": "This isn't made for the casual stroller. This is for the person who commands telemetry. It tells the operator: you are in control of the machine.",
+    "mizko": "Maximum information density per square inch. Tabular numbers and monospaced alignment eliminate ambiguity for GIS professionals and field surveyors.",
+    "marker_desc": "Amber Phosphor Matrix with Green Coordinate Grid",
+    "swatches": [
+      [
+        "#FF9E00",
+        "Amber Phosphor"
+      ],
+      [
+        "#00FF66",
+        "Telemetry Green"
+      ],
+      [
+        "#050607",
+        "Matrix Void"
+      ],
+      [
+        "#1A1200",
+        "Tabular Grid"
+      ]
+    ]
+  },
+  {
+    "id": "board-7",
+    "num": "07",
+    "theme": "theme-te",
+    "title": "Teenage Engineering / Braun",
+    "subtitle": "Dieter Rams Tactile Hardware Aesthetic",
+    "draper": "We forgot what it feels like to hold a well-made physical tool. What if software felt like a piece of German hardware you want to keep on your desk forever?",
+    "mizko": "Delightful physical affordances. Raised buttons, rotary toggles, and segmented card bays give software the tactile satisfaction of an analog synthesizer.",
+    "marker_desc": "Machined Hardware Push-Pin in Safety Orange & Dieter Gray",
+    "swatches": [
+      [
+        "#FF4400",
+        "Safety Orange"
+      ],
+      [
+        "#E5E5E2",
+        "Matte Pebble"
+      ],
+      [
+        "#FFD000",
+        "Rotary Yellow"
+      ],
+      [
+        "#222220",
+        "Hardware Body"
+      ]
+    ]
+  },
+  {
+    "id": "board-8",
+    "num": "08",
+    "theme": "theme-brutalist",
+    "title": "Neo-Brutalist Gumroad",
+    "subtitle": "Figma Bold / High-Contrast Pop",
+    "draper": "Mapping doesn't have to be serious, boring, and dusty. Make it fun. Make it pop. Make someone smile while they're planning a trek to Yosemite.",
+    "mizko": "Zero ambiguity. The thick 3px black strokes and hard 4px drop-shadows create an unmissable visual hierarchy where no user ever wonders what to click next.",
+    "marker_desc": "Chunky Pop-Art Starburst Pin with 2.5px Hard Shadow",
+    "swatches": [
+      [
+        "#FFE600",
+        "Canary Pop"
+      ],
+      [
+        "#FF5A5F",
+        "Electric Coral"
+      ],
+      [
+        "#4D96FF",
+        "Cobalt Sky"
+      ],
+      [
+        "#000000",
+        "Solid Ink"
+      ]
+    ]
+  },
+  {
+    "id": "board-9",
+    "num": "09",
+    "theme": "theme-cyber",
+    "title": "Night City Cyberpunk",
+    "subtitle": "Neon Recon & Orbital Satellite HUD",
+    "draper": "It\u2019s 2049. You\u2019re scanning public land boundaries from an orbital satellite recon hub. It\u2019s intoxicating, rebellious, and unapologetically futuristic.",
+    "mizko": "Immersion through chromatic glow. High-contrast neon cyan and magenta boundaries against pitch obsidian make spatial geometry look like live energy grids.",
+    "marker_desc": "Holographic Dual-Ring Targeting Reticle in Neon Cyan/Magenta",
+    "swatches": [
+      [
+        "#00F5D4",
+        "Neon Cyan"
+      ],
+      [
+        "#FF007F",
+        "Hot Magenta"
+      ],
+      [
+        "#0A0A12",
+        "Obsidian Void"
+      ],
+      [
+        "#262640",
+        "Sub-grid"
+      ]
+    ]
+  },
+  {
+    "id": "board-10",
+    "num": "10",
+    "theme": "theme-zen",
+    "title": "Japanese Zen (Wabi-Sabi)",
+    "subtitle": "Handcrafted Washi Paper & Stone Cairn",
+    "draper": "A cairn is an ancient stone guide left on a misty path to say: someone walked here before you, and you are not lost. This design brings calm to a noisy world.",
+    "mizko": "Generous negative space (Ma \u9593) eliminates cognitive overwhelm. The muted earth tones and soft pebble geometry make GIS mapping feel contemplative.",
+    "marker_desc": "Stacked River-Pebble Pebble Stone Cairn in Persimmon & Moss",
+    "swatches": [
+      [
+        "#4A634E",
+        "Moss Green"
+      ],
+      [
+        "#A8442E",
+        "Dried Persimmon"
+      ],
+      [
+        "#F6F3EE",
+        "Washi Paper"
+      ],
+      [
+        "#2B2A27",
+        "Sumi Stone"
+      ]
+    ]
+  }
+];
 
     let currentIdx = 0;
     let votes = {}; // boardId: 'keep' | 'pass' | 'maybe'
@@ -2712,7 +2993,11 @@
       });
     }
 
-    document.addEventListener('DOMContentLoaded', initStudio);
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initStudio);
+    } else {
+      initStudio();
+    }
   </script>
 </body>
 </html>
