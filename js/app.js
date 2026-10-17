@@ -62,21 +62,21 @@ map.on('load', () => {
   map.addSource('data', { type: 'geojson', data: EMPTY });
   map.addSource('preview', { type: 'geojson', data: EMPTY });
   map.addLayer({ id: 'data-fill', type: 'fill', source: 'data', filter: ['==', '$type', 'Polygon'],
-    paint: { 'fill-color': '#ffc933', 'fill-opacity': 0.32 } });
+    paint: { 'fill-color': '#8B6834', 'fill-opacity': 0.28 } });
   map.addLayer({ id: 'data-line', type: 'line', source: 'data', filter: ['!=', '$type', 'Point'],
-    paint: { 'line-color': '#0a4349', 'line-width': 2 } });
+    paint: { 'line-color': '#2F4838', 'line-width': 2 } });
   map.addLayer({ id: 'data-point', type: 'circle', source: 'data', filter: ['==', '$type', 'Point'],
-    paint: { 'circle-radius': 5, 'circle-color': '#ffc933', 'circle-stroke-color': '#0a4349', 'circle-stroke-width': 2 } });
+    paint: { 'circle-radius': 5, 'circle-color': '#8B6834', 'circle-stroke-color': '#2F4838', 'circle-stroke-width': 2 } });
   map.addSource('route', { type: 'geojson', data: EMPTY });
   map.addLayer({ id: 'route-casing', type: 'line', source: 'route', layout: { 'line-cap': 'round', 'line-join': 'round' },
-    paint: { 'line-color': '#ffffff', 'line-width': 7 } });
+    paint: { 'line-color': '#EAE3D2', 'line-width': 7 } });
   // Road legs are solid; the flight leg is dashed. (Dash patterns cannot vary per feature, hence two layers.)
   map.addLayer({ id: 'route-line', type: 'line', source: 'route', filter: ['!=', ['get', 'mode'], 'Fly'], layout: { 'line-cap': 'round', 'line-join': 'round' },
-    paint: { 'line-color': '#0f5c63', 'line-width': 4 } });
+    paint: { 'line-color': '#2F4838', 'line-width': 4 } });
   map.addLayer({ id: 'route-fly', type: 'line', source: 'route', filter: ['==', ['get', 'mode'], 'Fly'],
-    paint: { 'line-color': '#0f5c63', 'line-width': 3, 'line-dasharray': [2, 2] } });
+    paint: { 'line-color': '#2F4838', 'line-width': 3, 'line-dasharray': [2, 2] } });
   map.addLayer({ id: 'preview-line', type: 'line', source: 'preview',
-    paint: { 'line-color': '#10222b', 'line-width': 3, 'line-dasharray': [2, 1.5] } });
+    paint: { 'line-color': '#1E2E24', 'line-width': 3, 'line-dasharray': [2, 1.5] } });
   mapReady = true;
   afterLoad.splice(0).forEach((fn) => fn());
 });
@@ -286,9 +286,9 @@ async function identify(lng, lat) {
   lastSpot = { lng, lat };
   const token = ++hereToken;
   if (marker) marker.remove();
-  // The spot marker is a little cairn, the same mark as the logo.
-  const cairnPin = el('img', { src: 'img/mark.svg', alt: '', className: 'cairn-pin', width: 34, height: 34 });
-  marker = new maplibregl.Marker({ element: cairnPin, anchor: 'bottom' }).setLngLat([lng, lat]).addTo(map);
+  // The spot marker is the USFS / BLM Cadastral Brass Survey Boundary Cap
+  const cairnPin = el('img', { src: 'img/marker-cadastral.svg', alt: 'USFS Cadastral Survey Boundary Cap', className: 'cairn-pin', width: 34, height: 34 });
+  marker = new maplibregl.Marker({ element: cairnPin, anchor: 'center' }).setLngLat([lng, lat]).addTo(map);
   status('Looking up this spot…', 'busy');
   const { features, failed } = await identifyAt(lng, lat);
   if (token !== hereToken) return; // a newer click replaced this one
@@ -1384,7 +1384,7 @@ function applyLook() {
   });
 }
 ['k-line', 'k-fill', 'k-opacity', 'k-width'].forEach((id) => $(id).addEventListener('input', applyLook));
-$('k-reset').addEventListener('click', () => { $('k-fill').value = '#ffc933'; $('k-line').value = '#0a4349'; $('k-width').value = '2'; $('k-opacity').value = '30'; applyLook(); });
+$('k-reset').addEventListener('click', () => { $('k-fill').value = '#8b6834'; $('k-line').value = '#2f4838'; $('k-width').value = '2'; $('k-opacity').value = '28'; applyLook(); });
 
 function download(blob, filename) {
   const a = el('a', { href: URL.createObjectURL(blob), download: filename });

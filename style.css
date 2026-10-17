@@ -1,21 +1,21 @@
 :root {
-  --fog: #e6ecee;
-  --paper: #f8f9f7;
-  --surface: #ffffff;
-  --ink: #10222b;
-  --ink-soft: #4d626c;
-  --line: #cbd6da;
-  --teal: #0f5c63;
-  --teal-dark: #0a4349;
-  --teal-link: #0f5c63;
-  --teal-ink: #ffffff;
-  --tape: #ffc933;
-  --tape-soft: #fff6d6;
-  --tape-ink: #10222b;
-  --pin-bg: #0a4349;
-  --pin-fg: #ffffff;
-  --err: #a3261b;
-  --radius: 6px;
+  --fog: #DFD6C4;
+  --paper: #EAE3D2;
+  --surface: #F4EFE6;
+  --ink: #1E2E24;
+  --ink-soft: #4E5F52;
+  --line: #C8BDAB;
+  --teal: #2F4838;
+  --teal-dark: #1E2E24;
+  --teal-link: #2F4838;
+  --teal-ink: #FFFFFF;
+  --tape: #8B6834;
+  --tape-soft: #DFD5C2;
+  --tape-ink: #FFFFFF;
+  --pin-bg: #2F4838;
+  --pin-fg: #EAE3D2;
+  --err: #A82215;
+  --radius: 3px;
   color-scheme: light dark;
 }
 
@@ -25,43 +25,43 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
-    --fog: #0c1519;
-    --paper: #121c21;
-    --surface: #18252b;
-    --ink: #eef3f5;
-    --ink-soft: #93a9b3;
-    --line: #263842;
-    --teal: #22b8c7;
-    --teal-dark: #199ea9;
-    --teal-link: #3ec1cd;
-    --teal-ink: #07191d;
-    --tape: #f5bc28;
-    --tape-soft: #302812;
-    --tape-ink: #10222b;
-    --pin-bg: #22b8c7;
-    --pin-fg: #07191d;
-    --err: #e05346;
+    --fog: #0F1712;
+    --paper: #16221B;
+    --surface: #1C2B22;
+    --ink: #EAE3D2;
+    --ink-soft: #9CAEA1;
+    --line: #2B3E32;
+    --teal: #2D5E3E;
+    --teal-dark: #234B31;
+    --teal-link: #7EC297;
+    --teal-ink: #FFFFFF;
+    --tape: #D4A359;
+    --tape-soft: #302816;
+    --tape-ink: #121C16;
+    --pin-bg: #2D5E3E;
+    --pin-fg: #EAE3D2;
+    --err: #FF6B5E;
   }
 }
 
 :root[data-theme='dark'] {
   color-scheme: dark;
-  --fog: #0c1519;
-  --paper: #121c21;
-  --surface: #18252b;
-  --ink: #eef3f5;
-  --ink-soft: #93a9b3;
-  --line: #263842;
-  --teal: #22b8c7;
-  --teal-dark: #199ea9;
-  --teal-link: #3ec1cd;
-  --teal-ink: #07191d;
-  --tape: #f5bc28;
-  --tape-soft: #302812;
-  --tape-ink: #10222b;
-  --pin-bg: #22b8c7;
-  --pin-fg: #07191d;
-  --err: #e05346;
+  --fog: #0F1712;
+  --paper: #16221B;
+  --surface: #1C2B22;
+  --ink: #EAE3D2;
+  --ink-soft: #9CAEA1;
+  --line: #2B3E32;
+  --teal: #2D5E3E;
+  --teal-dark: #234B31;
+  --teal-link: #7EC297;
+  --teal-ink: #FFFFFF;
+  --tape: #D4A359;
+  --tape-soft: #302816;
+  --tape-ink: #121C16;
+  --pin-bg: #2D5E3E;
+  --pin-fg: #EAE3D2;
+  --err: #FF6B5E;
 }
 
 ::selection {
@@ -96,7 +96,7 @@ body {
 }
 
 .brand-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.brand h1 { margin: 0; font-size: 28px; font-weight: 900; letter-spacing: -0.02em; display: flex; align-items: center; gap: 9px; }
+.brand h1 { margin: 0; font-size: 28px; font-weight: 900; letter-spacing: -0.01em; text-transform: uppercase; color: var(--teal-link); display: flex; align-items: center; gap: 9px; }
 .brand h1 img { display: block; margin-top: -3px; }
 .brand p { margin: 4px 0 0; color: var(--ink-soft); }
 .theme-toggle {
@@ -129,8 +129,8 @@ body {
 h2 { margin: 0 0 8px; font-size: 17px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
 h3 { margin: 0; font-size: 15px; font-weight: 700; }
 .n {
-  display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%;
-  background: var(--ink); color: var(--paper); font-size: 13px; font-weight: 700; flex: none;
+  display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: var(--radius);
+  background: var(--teal); color: var(--teal-ink); font-size: 13px; font-weight: 700; flex: none;
 }
 .lead { margin: 0 0 10px; color: var(--ink-soft); }
 .lead strong { color: var(--ink); }
@@ -239,8 +239,8 @@ button.warn-confirm { background: var(--tape); color: var(--tape-ink); border-co
 .card[aria-pressed='true'] small, .card:hover small { color: var(--tape-ink); }
 
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.chip { background: var(--fog); border: 1px solid var(--line); border-radius: 999px; padding: 5px 11px; cursor: pointer; font-weight: 500; }
-.chip:hover { background: var(--tape-soft); border-color: var(--ink-soft); color: var(--ink); }
+.chip { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 5px 11px; cursor: pointer; font-weight: 700; color: var(--teal-link); }
+.chip:hover { background: var(--teal); border-color: var(--teal-dark); color: var(--teal-ink); }
 
 /* Lists */
 .picklist, .rows { list-style: none; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); max-height: 240px; overflow-y: auto; touch-action: pan-y; overscroll-behavior: contain; }
@@ -426,13 +426,13 @@ input[type='range'] { width: 100%; height: 28px; accent-color: var(--teal); curs
 .modes { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
 .modes label { position: relative; cursor: pointer; display: inline-flex; align-items: center; }
 .modes input { position: absolute; inset: 0; margin: 0; opacity: 0; cursor: pointer; }
-.modes span { display: inline-block; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--fog); font-weight: 700; color: var(--ink); }
-.modes input:checked + span { background: var(--tape); border-color: var(--ink-soft); color: var(--tape-ink); }
+.modes span { display: inline-block; padding: 6px 12px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); font-weight: 700; color: var(--ink); }
+.modes input:checked + span { background: var(--teal); border-color: var(--teal-dark); color: var(--teal-ink); }
 .modes input:focus-visible + span { outline: 2px solid var(--ink); outline-offset: 2px; }
 #r-stops { list-style: none; max-height: 260px; }
 #r-stops li { display: flex; align-items: center; gap: 8px; padding: 6px 10px; transition: background 0.12s; }
-#r-stops .num, .stop-pin { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--pin-bg); color: var(--pin-fg); font-weight: 700; font-size: 13px; flex: none; }
-.stop-pin { border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.4); cursor: grab; }
+#r-stops .num, .stop-pin { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: var(--radius); background: var(--pin-bg); color: var(--pin-fg); font-weight: 700; font-size: 13px; flex: none; }
+.stop-pin { border: 2px solid var(--paper); box-shadow: 0 1px 4px rgba(0,0,0,.4); cursor: grab; }
 .stop-pin:active { cursor: grabbing; }
 #r-stops .stop-lbl {
   flex: 1;
