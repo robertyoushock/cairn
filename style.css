@@ -428,11 +428,133 @@ input[type='range'] { width: 100%; height: 28px; accent-color: var(--teal); curs
 .modes span { display: inline-block; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--fog); font-weight: 700; color: var(--ink); }
 .modes input:checked + span { background: var(--tape); border-color: var(--ink-soft); color: var(--tape-ink); }
 .modes input:focus-visible + span { outline: 2px solid var(--ink); outline-offset: 2px; }
-#r-stops { list-style: none; max-height: 220px; }
-#r-stops li { display: flex; align-items: center; gap: 8px; padding: 6px 10px; }
+#r-stops { list-style: none; max-height: 260px; }
+#r-stops li { display: flex; align-items: center; gap: 8px; padding: 6px 10px; transition: background 0.12s; }
 #r-stops .num, .stop-pin { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--pin-bg); color: var(--pin-fg); font-weight: 700; font-size: 13px; flex: none; }
 .stop-pin { border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.4); cursor: grab; }
-#r-stops .lbl { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.stop-pin:active { cursor: grabbing; }
+#r-stops .stop-lbl {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  text-align: left;
+  padding: 4px 6px;
+  margin: 0;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: background 0.12s, border-color 0.12s;
+}
+#r-stops .stop-lbl:hover {
+  background: var(--tape-soft);
+  border-color: var(--line);
+}
+#r-stops .stop-lbl:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 1px;
+}
+#r-stops .stop-lbl .stop-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+#r-stops .stop-lbl .edit-hint {
+  font-size: 11px;
+  color: var(--ink-soft);
+  opacity: 0;
+  flex: none;
+  transition: opacity 0.12s;
+}
+#r-stops .stop-lbl:hover .edit-hint,
+#r-stops .stop-lbl:focus-visible .edit-hint {
+  opacity: 1;
+}
+
+#r-stops li.editing {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background: var(--surface);
+  border: 1px solid var(--teal);
+  border-radius: var(--radius);
+  padding: 8px 10px;
+  gap: 6px;
+}
+.stop-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+.stop-edit-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+.stop-edit-row .num {
+  flex: none;
+}
+.stop-edit-input {
+  flex: 1;
+  min-width: 0;
+  height: 32px;
+  padding: 4px 8px;
+  font-size: 13px;
+  font-family: inherit;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.stop-edit-input:focus {
+  outline: 2px solid var(--teal);
+  outline-offset: -1px;
+  border-color: var(--teal);
+}
+.stop-edit-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: none;
+}
+.stop-edit-actions button {
+  font-size: 12px;
+  padding: 4px 8px;
+}
+.stop-edit-actions .save-btn {
+  background: var(--tape);
+  color: var(--tape-ink);
+  font-weight: 700;
+  border-color: var(--line);
+}
+.stop-edit-actions .save-btn:hover {
+  filter: brightness(1.05);
+}
+.stop-edit-opt {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.stop-edit-opt input[type='checkbox'] {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  accent-color: var(--teal);
+}
+
 #r-stops button { font-size: 12px; padding: 5px 10px; min-height: 32px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--ink); cursor: pointer; touch-action: manipulation; }
 
 /* ---- Right-click "Pick an area" menu ---- */
@@ -501,6 +623,11 @@ input[type='range'] { width: 100%; height: 28px; accent-color: var(--teal); curs
   .colors label.w select { min-height: 44px; padding: 6px 10px; }
   .hits .acts button { min-height: 44px; padding: 8px 14px; font-size: 13px; }
   #r-stops button { min-height: 44px; min-width: 44px; padding: 8px 12px; font-size: 13px; }
+  #r-stops .stop-lbl { min-height: 44px; padding: 8px 10px; }
+  .stop-edit-input { height: 44px; font-size: 14px; }
+  .stop-edit-actions button { min-height: 44px; padding: 8px 12px; font-size: 13px; }
+  .stop-edit-opt { font-size: 13px; }
+  .stop-edit-opt input[type='checkbox'] { width: 18px; height: 18px; }
   .theme-toggle { min-height: 44px; min-width: 44px; font-size: 18px; }
   input[type='range'] { height: 36px; }
 }

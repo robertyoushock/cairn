@@ -972,6 +972,8 @@ async function loadAirports() {
   return airportsCache;
 }
 
+let editingStopIndex = -1;
+
 function stopLabel(s, i) {
   return s.label || `Stop ${i + 1} (${s.lat.toFixed(4)}, ${s.lng.toFixed(4)})`;
 }
@@ -984,13 +986,102 @@ function addStop(stop, { recalc = true } = {}) {
   s.marker.on('dragend', () => {
     const p = s.marker.getLngLat();
     s.lng = p.lng; s.lat = p.lat; s.label = '';
+    editingStopIndex = -1;
     renderStops(); scheduleRoute();
   });
-  // Clicking a pin should not also drop a new stop underneath it.
-  pin.addEventListener('click', (e) => e.stopPropagation());
+  // Clicking a pin opens the route section and starts editing this stop in the list
+  pin.addEventListener('click', (e) => {
+    e.stopPropagation();
+    $('route').open = true;
+    const idx = routeStops.indexOf(s);
+    if (idx !== -1) {
+      editingStopIndex = idx;
+      renderStops();
+      $('r-stops').children[idx]?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+  });
+  editingStopIndex = -1;
   routeStops.push(s);
   renderStops();
   if (recalc) scheduleRoute();
+}
+
+async function commitStopEdit(index, text, relocate, submitBtn) {
+  const s = routeStops[index];
+  if (!s) return;
+  if (!text) {
+    status('Stop cannot be empty. Enter an address, place, or coordinates.', 'error');
+    return;
+  }
+
+  const curText = s.label || `${s.lat.toFixed(4)}, ${s.lng.toFixed(4)}`;
+  if (text === curText || text === s.label) {
+    editingStopIndex = -1;
+    renderStops();
+    return;
+  }
+
+  // 1. Check if user typed coordinates: "lat, lng" or "lat lng"
+  const coordMatch = text.match(/^\s*(-?\d+(?:\.\d+)?)[,\s]+(-?\d+(?:\.\d+)?)\s*$/);
+  if (coordMatch) {
+    const lat = parseFloat(coordMatch[1]);
+    const lng = parseFloat(coordMatch[2]);
+    if (lat >= -90 && lat <= 90 && lng >= -180 && lng <= 180) {
+      s.lat = lat;
+      s.lng = lng;
+      s.label = '';
+      s.marker.setLngLat([s.lng, s.lat]);
+      editingStopIndex = -1;
+      renderStops();
+      scheduleRoute();
+      map.flyTo({ center: [s.lng, s.lat], zoom: Math.max(map.getZoom(), 11), duration: 600 });
+      status(`Updated stop ${index + 1} to coordinates (${lat.toFixed(4)}, ${lng.toFixed(4)}).`);
+      return;
+    }
+  }
+
+  // 2. If relocate is checked, try searching for the place/address
+  if (relocate) {
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = '…';
+    }
+    try {
+      let res = await searchPlaces(text);
+      if (!res.length && cleanAddress(text) !== text) res = await searchPlaces(cleanAddress(text));
+      if (res && res.length) {
+        s.lng = res[0].lng;
+        s.lat = res[0].lat;
+        s.label = res[0].name ? res[0].name.split(',').slice(0, 2).join(',') : text;
+        s.marker.setLngLat([s.lng, s.lat]);
+        editingStopIndex = -1;
+        renderStops();
+        scheduleRoute();
+        map.flyTo({ center: [s.lng, s.lat], zoom: Math.max(map.getZoom(), 11), duration: 600 });
+        status(`Updated stop ${index + 1} to ${s.label}.`);
+        return;
+      }
+    } catch {
+      // Fall through to renaming only
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Save';
+      }
+    }
+    // Geocoding didn't find a place -> update label at current location
+    s.label = text;
+    editingStopIndex = -1;
+    renderStops();
+    status(`No place found for "${text}". Updated stop label at current location.`, 'info');
+    return;
+  }
+
+  // 3. User unchecked relocate -> rename only
+  s.label = text;
+  editingStopIndex = -1;
+  renderStops();
+  status(`Renamed stop ${index + 1} to "${s.label}".`);
 }
 
 function renderStops() {
@@ -999,14 +1090,93 @@ function renderStops() {
   ol.hidden = routeStops.length === 0;
   routeStops.forEach((s, i) => {
     s.marker.getElement().textContent = String(i + 1);
-    s.marker.getElement().setAttribute('aria-label', `Stop ${i + 1}: ${stopLabel(s, i)}. Drag to move it.`);
-    const up = el('button', { type: 'button', className: 'act', textContent: 'Up', disabled: i === 0 });
-    up.setAttribute('aria-label', `Move stop ${i + 1} earlier`);
-    up.addEventListener('click', () => { [routeStops[i - 1], routeStops[i]] = [routeStops[i], routeStops[i - 1]]; renderStops(); scheduleRoute(); });
-    const rm = el('button', { type: 'button', className: 'act remove', textContent: 'Remove' });
-    rm.setAttribute('aria-label', `Remove stop ${i + 1}`);
-    rm.addEventListener('click', () => { s.marker.remove(); routeStops.splice(i, 1); renderStops(); scheduleRoute(); });
-    ol.append(el('li', {}, el('span', { className: 'num', textContent: String(i + 1) }), el('span', { className: 'lbl', textContent: stopLabel(s, i), title: stopLabel(s, i) }), up, rm));
+    s.marker.getElement().setAttribute('aria-label', `Stop ${i + 1}: ${stopLabel(s, i)}. Click or drag to edit.`);
+
+    if (editingStopIndex === i) {
+      const num = el('span', { className: 'num', textContent: String(i + 1) });
+      const input = el('input', {
+        type: 'text',
+        className: 'stop-edit-input',
+        value: s.label || `${s.lat.toFixed(4)}, ${s.lng.toFixed(4)}`,
+        placeholder: 'Address, place name, or lat, lng',
+        autocomplete: 'off'
+      });
+      input.setAttribute('aria-label', `Edit address or label for stop ${i + 1}`);
+
+      const saveBtn = el('button', { type: 'submit', className: 'act save-btn', textContent: 'Save' });
+      saveBtn.setAttribute('aria-label', `Save changes to stop ${i + 1} (Enter)`);
+
+      const cancelBtn = el('button', { type: 'button', className: 'act cancel-btn', textContent: 'Cancel' });
+      cancelBtn.setAttribute('aria-label', `Cancel editing stop ${i + 1} (Esc)`);
+
+      const optLabel = el('label', { className: 'stop-edit-opt' });
+      const optCheck = el('input', { type: 'checkbox', className: 'stop-edit-relocate', checked: true });
+      optLabel.append(optCheck, el('span', { textContent: 'Move pin if address or place found' }));
+
+      const row = el('div', { className: 'stop-edit-row' }, num, input, el('div', { className: 'stop-edit-actions' }, saveBtn, cancelBtn));
+      const form = el('form', { className: 'stop-edit-form' }, row, optLabel);
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        await commitStopEdit(i, input.value.trim(), optCheck.checked, saveBtn);
+      });
+
+      cancelBtn.addEventListener('click', () => {
+        editingStopIndex = -1;
+        renderStops();
+      });
+
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          editingStopIndex = -1;
+          renderStops();
+        }
+      });
+
+      ol.append(el('li', { className: 'editing' }, form));
+
+      setTimeout(() => {
+        input.focus();
+        input.select();
+      }, 0);
+    } else {
+      const num = el('span', { className: 'num', textContent: String(i + 1) });
+      const lblText = el('span', { className: 'stop-text', textContent: stopLabel(s, i) });
+      const editHint = el('span', { className: 'edit-hint', textContent: 'Edit' });
+      const lblBtn = el('button', {
+        type: 'button',
+        className: 'lbl stop-lbl',
+        title: `Click to edit stop ${i + 1}: ${stopLabel(s, i)}`
+      }, lblText, editHint);
+      lblBtn.setAttribute('aria-label', `Stop ${i + 1}: ${stopLabel(s, i)}. Click to edit.`);
+      lblBtn.addEventListener('click', () => {
+        editingStopIndex = i;
+        renderStops();
+      });
+
+      const up = el('button', { type: 'button', className: 'act', textContent: 'Up', disabled: i === 0 });
+      up.setAttribute('aria-label', `Move stop ${i + 1} earlier`);
+      up.addEventListener('click', () => {
+        editingStopIndex = -1;
+        [routeStops[i - 1], routeStops[i]] = [routeStops[i], routeStops[i - 1]];
+        renderStops();
+        scheduleRoute();
+      });
+
+      const rm = el('button', { type: 'button', className: 'act remove', textContent: 'Remove' });
+      rm.setAttribute('aria-label', `Remove stop ${i + 1}`);
+      rm.addEventListener('click', () => {
+        s.marker.remove();
+        routeStops.splice(i, 1);
+        if (editingStopIndex === i) editingStopIndex = -1;
+        else if (editingStopIndex > i) editingStopIndex--;
+        renderStops();
+        scheduleRoute();
+      });
+
+      ol.append(el('li', {}, num, lblBtn, up, rm));
+    }
   });
 }
 
@@ -1046,6 +1216,7 @@ document.querySelectorAll('input[name="rmode"]').forEach((r) => r.addEventListen
 function clearRoute() {
   routeStops.forEach((s) => s.marker.remove());
   routeStops = [];
+  editingStopIndex = -1;
   routeResult = null;
   routeToken++;
   renderStops();
