@@ -71,7 +71,7 @@
 
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
-html, body { height: 100%; margin: 0; }
+html, body { height: 100%; margin: 0; overflow: hidden; }
 body {
   font-family: 'Schibsted Grotesk', system-ui, sans-serif;
   color: var(--ink);
@@ -80,9 +80,10 @@ body {
   line-height: 1.45;
 }
 
-.app { display: grid; grid-template-columns: 420px 1fr; height: 100%; }
+.app { display: grid; grid-template-columns: 420px 1fr; height: 100%; overflow: hidden; }
 
 .panel {
+  position: relative;
   background: var(--paper);
   border-right: 1px solid var(--line);
   overflow-y: auto;
@@ -423,8 +424,8 @@ input[type='range'] { width: 100%; height: 28px; accent-color: var(--teal); curs
 
 /* ---- Routes ---- */
 .modes { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
-.modes label { cursor: pointer; }
-.modes input { position: absolute; opacity: 0; pointer-events: none; }
+.modes label { position: relative; cursor: pointer; display: inline-flex; align-items: center; }
+.modes input { position: absolute; inset: 0; margin: 0; opacity: 0; cursor: pointer; }
 .modes span { display: inline-block; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--fog); font-weight: 700; color: var(--ink); }
 .modes input:checked + span { background: var(--tape); border-color: var(--ink-soft); color: var(--tape-ink); }
 .modes input:focus-visible + span { outline: 2px solid var(--ink); outline-offset: 2px; }
@@ -592,9 +593,9 @@ input[type='range'] { width: 100%; height: 28px; accent-color: var(--teal); curs
 
 /* ---- Phones: map on top, menu as a bottom sheet, one button to switch ---- */
 @media (max-width: 760px) {
-  html, body { height: 100dvh; }
+  html, body { height: 100dvh; overflow: hidden; }
   /* The map gets the space above the sheet, so its center (and whatever was just found) is never hidden under it. */
-  .app { height: 100dvh; grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) auto; }
+  .app { height: 100dvh; grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) auto; overflow: hidden; }
   .panel-closed.app { grid-template-rows: 1fr; }
   .panel-closed .panel, .panel.collapsed { display: none !important; }
   .stage { grid-area: 1 / 1; min-height: 0; }
