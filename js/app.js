@@ -1458,17 +1458,11 @@ function getEffectiveTheme() {
 function updateThemeUI() {
   const current = getEffectiveTheme();
   const btn = $('theme-toggle');
-  const icon = $('theme-icon');
-  if (!btn || !icon) return;
-  if (current === 'dark') {
-    icon.textContent = '☀️';
-    btn.setAttribute('aria-label', 'Switch to light mode');
-    btn.setAttribute('title', 'Switch to light mode');
-  } else {
-    icon.textContent = '🌙';
-    btn.setAttribute('aria-label', 'Switch to dark mode');
-    btn.setAttribute('title', 'Switch to dark mode');
-  }
+  if (!btn) return;
+  const isDark = current === 'dark';
+  btn.setAttribute('aria-checked', String(isDark));
+  btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+  btn.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
 }
 
 $('theme-toggle')?.addEventListener('click', () => {

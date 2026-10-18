@@ -33,15 +33,34 @@
       <header class="brand">
         <div class="brand-row">
           <h1><span class="brand-square" aria-hidden="true">■</span> CAIRN</h1>
-          <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
-            <span id="theme-icon" aria-hidden="true">☀️</span>
+          <button type="button" id="theme-toggle" class="theme-switch" role="switch" aria-checked="false" aria-label="Toggle dark mode" title="Toggle dark mode">
+            <span class="switch-track" aria-hidden="true">
+              <span class="switch-thumb"></span>
+              <span class="switch-icon switch-sun">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="4"/>
+                  <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+                </svg>
+              </span>
+              <span class="switch-icon switch-moon">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+                </svg>
+              </span>
+            </span>
           </button>
         </div>
         <p>US map boundaries cleanly extracted for GPS devices, Google Earth, and GIS software.</p>
       </header>
 
       <form id="place-form" class="place" role="search">
-        <label class="place-label" for="place-text"><span class="place-icon" aria-hidden="true">📍</span> Jump to city or address</label>
+        <label class="place-label" for="place-text">
+          <svg class="place-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          Jump to city or address
+        </label>
         <div class="place-input-row">
           <input id="place-text" type="search" placeholder="e.g. Denver, CO or 1437 Bannock St" autocomplete="off">
           <button type="submit" class="quiet">Go</button>
