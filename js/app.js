@@ -82,6 +82,21 @@ map.on('load', () => {
 });
 const whenReady = (fn) => (mapReady ? fn() : afterLoad.push(fn));
 
+function updateHudTelemetry() {
+  const latEl = $('hud-lat');
+  const lonEl = $('hud-lon');
+  if (!latEl || !lonEl) return;
+  const center = map.getCenter();
+  const lat = center.lat;
+  const lng = center.lng;
+  const latDir = lat >= 0 ? 'N' : 'S';
+  const lngDir = lng >= 0 ? 'E' : 'W';
+  latEl.textContent = `LAT: ${Math.abs(lat).toFixed(4)}° ${latDir}`;
+  lonEl.textContent = `LON: ${Math.abs(lng).toFixed(4)}° ${lngDir}`;
+}
+map.on('move', updateHudTelemetry);
+map.on('load', updateHudTelemetry);
+
 const mapBbox = () => {
   const b = map.getBounds();
   return [b.getWest(), b.getSouth(), b.getEast(), b.getNorth()];
@@ -1088,6 +1103,8 @@ function renderStops() {
   const ol = $('r-stops');
   ol.replaceChildren();
   ol.hidden = routeStops.length === 0;
+  const badge = $('r-badge');
+  if (badge) badge.textContent = `${routeStops.length} ${routeStops.length === 1 ? 'STOP' : 'STOPS'}`;
   routeStops.forEach((s, i) => {
     s.marker.getElement().textContent = String(i + 1);
     s.marker.getElement().setAttribute('aria-label', `Stop ${i + 1}: ${stopLabel(s, i)}. Click or drag to edit.`);
@@ -1344,7 +1361,7 @@ function updateDownload() {
   const n = selection.size;
   const b = $('download');
   b.disabled = n === 0;
-  b.textContent = n ? `Download ${fmtLabel[currentFmt()]} (${plural(n, 'item', 'items')})` : 'Add something to your list first';
+  b.textContent = n <= 1 ? 'Download Boundary' : `Download ${n} Boundaries`;
   $('size-note').textContent = '';
   $('size-warn').hidden = true;
   clearTimeout(sizeTimer);

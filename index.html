@@ -15,7 +15,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Schibsted+Grotesk:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
   <link rel="stylesheet" href="style.css">
   <script>
@@ -32,12 +32,12 @@
     <aside class="panel" id="panel">
       <header class="brand">
         <div class="brand-row">
-          <h1><img src="img/mark.svg" alt="" width="30" height="30"> Cairn</h1>
+          <h1><span class="brand-square" aria-hidden="true">■</span> CAIRN</h1>
           <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
             <span id="theme-icon" aria-hidden="true">☀️</span>
           </button>
         </div>
-        <p>Get the boundary you need and download it for Google Earth, GPS apps or mapping software.</p>
+        <p>US map boundaries cleanly extracted for GPS devices, Google Earth, and GIS software.</p>
       </header>
 
       <form id="place-form" class="place" role="search">
@@ -53,13 +53,13 @@
       <div id="status" role="status" aria-live="polite"></div>
 
       <section class="step" aria-labelledby="h-pick">
-        <h2 id="h-pick"><span class="n">1</span> Pick what you need</h2>
+        <h2 id="h-pick"><span class="n">1</span> Find boundaries</h2>
         <p class="lead">Search for what you need, <strong>or click anywhere on the map</strong> to see every ZIP code, district and county at that spot. Right-click (or press and hold) for a quick pick menu.</p>
 
         <form id="find-form" class="find" role="search">
           <label class="sr" for="find-text">Find map data</label>
-          <input id="find-text" type="search" placeholder="Try: texas state house, wildfires, school districts" autocomplete="off">
-          <button type="submit" class="primary">Find</button>
+          <input id="find-text" type="search" placeholder="Search park, county, watershed, district..." autocomplete="off">
+          <button type="submit" class="primary">Search</button>
         </form>
         <div class="chips" id="chips"></div>
 
@@ -131,14 +131,14 @@
         </form>
 
         <details class="more" id="route">
-          <summary>Make a route</summary>
+          <summary>Make a route <span class="route-stops-badge" id="r-badge">0 STOPS</span></summary>
           <p class="lead"><strong>Click the map</strong> to drop stops in order, or add them by address. Click any stop to edit it, or drag a pin to adjust it.</p>
           <fieldset class="modes" id="r-modes">
             <legend class="sr">How are you traveling?</legend>
             <label><input type="radio" name="rmode" value="car" checked><span>Drive</span></label>
             <label><input type="radio" name="rmode" value="bike"><span>Bike</span></label>
             <label><input type="radio" name="rmode" value="walk"><span>Walk</span></label>
-            <label><input type="radio" name="rmode" value="plane"><span>Fly + drive</span></label>
+            <label><input type="radio" name="rmode" value="plane"><span>Fly</span></label>
           </fieldset>
           <form id="r-add" class="find">
             <label class="sr" for="r-text">Add a stop by address or place</label>
@@ -172,7 +172,7 @@
       </section>
 
       <section class="step" aria-labelledby="h-list">
-        <h2 id="h-list"><span class="n">2</span> Check your list</h2>
+        <h2 id="h-list"><span class="n">2</span> Layer review</h2>
         <p id="empty" class="lead">Nothing yet. Click the map or choose a type above.</p>
         <div id="list-filter-wrap" class="stack" hidden>
           <label class="sr" for="list-filter">Filter your list</label>
@@ -206,18 +206,28 @@
       </section>
 
       <section class="step" aria-labelledby="h-get">
-        <h2 id="h-get"><span class="n">3</span> Download</h2>
+        <h2 id="h-get"><span class="n">3</span> Download format</h2>
         <form id="export-form" class="stack">
           <fieldset class="formats">
-            <legend>Where will you use it?</legend>
-            <label class="fmt"><input type="radio" name="fmt" value="kml" checked>
-              <span><strong>Google Earth or Google Maps</strong><small>KML file. Not sure? Pick this one.</small></span></label>
-            <label class="fmt"><input type="radio" name="fmt" value="kmz">
-              <span><strong>Google Earth, smaller file</strong><small>KMZ is a zipped KML.</small></span></label>
-            <label class="fmt"><input type="radio" name="fmt" value="gpx">
-              <span><strong>GPS watch or hiking app</strong><small>GPX file. Boundaries become outline tracks.</small></span></label>
-            <label class="fmt"><input type="radio" name="fmt" value="geojson">
-              <span><strong>Mapping software or code</strong><small>GeoJSON works in QGIS, ArcGIS and web maps.</small></span></label>
+            <legend class="sr">Select download format</legend>
+            <div class="formats-grid">
+              <label class="fmt format-tile">
+                <input type="radio" name="fmt" value="kml" checked>
+                <span class="fmt-text"><strong>KML</strong><small>Google Earth</small></span>
+              </label>
+              <label class="fmt format-tile">
+                <input type="radio" name="fmt" value="kmz">
+                <span class="fmt-text"><strong>KMZ</strong><small>Compressed</small></span>
+              </label>
+              <label class="fmt format-tile">
+                <input type="radio" name="fmt" value="gpx">
+                <span class="fmt-text"><strong>GPX</strong><small>GPS Device</small></span>
+              </label>
+              <label class="fmt format-tile">
+                <input type="radio" name="fmt" value="geojson">
+                <span class="fmt-text"><strong>GeoJSON</strong><small>Web / QGIS</small></span>
+              </label>
+            </div>
           </fieldset>
           <details id="look" class="tucked">
             <summary>Labels, attributes and file size</summary>
@@ -233,7 +243,7 @@
           <label>File name
             <input id="x-name" type="text" value="cairn-export" spellcheck="false">
           </label>
-          <button type="submit" class="primary" id="download" disabled>Download</button>
+          <button type="submit" class="primary download-cta-btn" id="download" disabled>Download Boundary</button>
         </form>
       </section>
 
@@ -246,9 +256,15 @@
 
     <main class="stage">
       <div id="map"></div>
+      <!-- Cadastral Survey Telemetry HUD bar (Mockup Bible) -->
+      <div class="map-hud-bar" aria-hidden="true">
+        <div class="hud-chip" id="hud-lat">LAT: 47.9691° N</div>
+        <div class="hud-chip" id="hud-lon">LON: 123.4986° W</div>
+        <div class="hud-chip">USGS 24K</div>
+      </div>
       <div class="modebar" role="group" aria-label="What a map click does">
-        <button type="button" id="mode-spot" aria-pressed="true" title="Click the map to see every boundary at that spot">What&rsquo;s here?</button>
-        <button type="button" id="mode-list" aria-pressed="false" title="Click shapes you added to inspect, remove or keep them">My list <span id="mode-count"></span></button>
+        <button type="button" id="mode-spot" aria-pressed="true" title="Click the map to see every boundary at that spot">Boundary View</button>
+        <button type="button" id="mode-list" aria-pressed="false" title="Click shapes you added to inspect, remove or keep them">Layer Review <span id="mode-count"></span></button>
         <button type="button" id="mode-route" aria-pressed="false" title="Click the map to drop route stops">Route</button>
       </div>
       <button id="panel-toggle" class="sheet-toggle" aria-controls="panel" aria-expanded="true">Map</button>
