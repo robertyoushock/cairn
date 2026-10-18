@@ -53,7 +53,7 @@ const map = new maplibregl.Map({
 });
 map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
 map.getCanvas().setAttribute('aria-label', 'Map. Arrow keys move it, plus and minus zoom. Press Enter to list the areas at the center.');
-map.addControl(new maplibregl.ScaleControl({ unit: 'imperial' }), 'bottom-left');
+map.addControl(new maplibregl.ScaleControl({ unit: 'imperial' }), 'bottom-right');
 
 const EMPTY = { type: 'FeatureCollection', features: [] };
 let mapReady = false;
